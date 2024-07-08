@@ -467,8 +467,8 @@ D:\Automation-Projects\HolyQuranAutomation\HolyQuran\obj\Debug\net8.0\refint\Liv
 D:\Automation-Projects\HolyQuranAutomation\HolyQuran\obj\Debug\net8.0\Live_Earth_Map.pdb
 D:\Automation-Projects\HolyQuranAutomation\HolyQuran\obj\Debug\net8.0\Live_Earth_Map.genruntimeconfig.cache
 D:\Automation-Projects\HolyQuranAutomation\HolyQuran\obj\Debug\net8.0\ref\Live_Earth_Map.dll
-D:\Automation-Projects\Holy-QuranAutomation-Project\HolyQuran\bin\Debug\net8.0\testhost.exe
 D:\Automation-Projects\Holy-QuranAutomation-Project\HolyQuran\bin\Debug\net8.0\testhost.dll
+D:\Automation-Projects\Holy-QuranAutomation-Project\HolyQuran\bin\Debug\net8.0\testhost.exe
 D:\Automation-Projects\Holy-QuranAutomation-Project\HolyQuran\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 D:\Automation-Projects\Holy-QuranAutomation-Project\HolyQuran\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
 D:\Automation-Projects\Holy-QuranAutomation-Project\HolyQuran\bin\Debug\net8.0\Microsoft.TestPlatform.AdapterUtilities.dll
