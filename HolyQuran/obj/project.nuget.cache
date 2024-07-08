@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LGd9/EfglMeBTXemfeBGABAsr+hsmcAQ/KP4Xrr5R3buwXXNm521botMUAJ8JSucum7nfLiuIuKkizHLwOHlng==",
+  "dgSpecHash": "PpB8uFskVzugH6Kg6QSFP2DQC7xrH7IUJQAhGoKZROyQd3QDN+iyRSb26Vr9E3AiVdqR9PnGdeOPiRsA9GcJAQ==",
   "success": true,
-  "projectFilePath": "D:\\Automation-Projects\\HolyQuranAutomation\\HolyQuran\\Live_Earth_Map.csproj",
+  "projectFilePath": "D:\\Automation-Projects\\Holy-QuranAutomation-Project\\HolyQuran\\Live_Earth_Map.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nayab\\.nuget\\packages\\appium.webdriver\\4.4.5\\appium.webdriver.4.4.5.nupkg.sha512",
     "C:\\Users\\nayab\\.nuget\\packages\\castle.core\\4.3.1\\castle.core.4.3.1.nupkg.sha512",
