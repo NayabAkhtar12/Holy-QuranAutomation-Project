@@ -11,12 +11,15 @@ namespace Live_Earth_Map.Pages
         private AppiumDriver<IWebElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
+        //private AdHelper adHelper;
+        //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
         public AlQuran(AppiumDriver<IWebElement> driver, ExtentTest test)
         {
             this.driver = driver;
             this.Test = test;
+            // this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
         }
 
         public void AlQuranModule()
@@ -66,8 +69,8 @@ namespace Live_Earth_Map.Pages
 
         public void QuranLaunch()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             try
             {
                 wait.Until(ExpectedConditions.ElementToBeClickable(Continue)).Click();
@@ -124,12 +127,11 @@ namespace Live_Earth_Map.Pages
         }
         public void PerformQuranOperations()
         {
-
             try
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-                //   ALQuranMenu.Click();
-                wait.Until(ExpectedConditions.ElementToBeClickable(ReadQuran)).Click();
+                ALQuranMenu.Click();
+                //  wait.Until(ExpectedConditions.ElementToBeClickable(ReadQuran)).Click();
                 Thread.Sleep(3000);
 
                 AlFatiha.Click();
@@ -400,15 +402,15 @@ namespace Live_Earth_Map.Pages
 
         public void HajjGuide()
         {
-            //try
-            //{
-            //    //    hajjUmrahMenu.Click();
-            //    Thread.Sleep(3000); // Assuming a delay after click for the view to load
-            //}
-            //catch (Exception ex)
-            //{
-            //    HandleException("Hajj and Umrah", ex);
-            //}
+            try
+            {
+                hajjUmrahMenu.Click();
+                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hajj and Umrah", ex);
+            }
 
             try
             {

@@ -11,16 +11,16 @@ namespace Live_Earth_Map.Test_Class
         AlQuran HajjUmrah;
         AlQuran Azkar;
 
-        //  [TestMethod]
+        [TestMethod]
         public void HolyQuran()
         {
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
-            //     AlQuranSec.QuranLaunch();
+            AlQuranSec.QuranLaunch();
             AlQuranSec.PerformQuranOperations();
-            //   AlQuranSec.PerformSwipeOperations();
+            AlQuranSec.PerformSwipeOperations();
             AlQuranSec.QiblaFinder();
-            // AlQuranSec.MasjidFinder();
+            AlQuranSec.MasjidFinder();
             AlQuranSec.DigitalTasbeeh();
             AlQuranSec.PrayerTimes();
             AlQuranSec.HijriCalendar();
