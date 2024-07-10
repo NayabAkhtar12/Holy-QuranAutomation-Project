@@ -1,6 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
 
@@ -8,18 +9,18 @@ namespace Live_Earth_Map.Pages
 {
     class AlQuran
     {
-        private AppiumDriver<IWebElement> driver;
+        private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
-        //private AdHelper adHelper;
+        private AdHelper adHelper;
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
-        public AlQuran(AppiumDriver<IWebElement> driver, ExtentTest test)
+        public AlQuran(AppiumDriver<AndroidElement> driver, ExtentTest test)
         {
             this.driver = driver;
             this.Test = test;
-            // this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
+            this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
         }
 
         public void AlQuranModule()
@@ -351,6 +352,8 @@ namespace Live_Earth_Map.Pages
             {
                 digitalTasbeehMenu.Click();
                 Thread.Sleep(3000);
+                adHelper.HandleAd();
+
                 EditZikrForCount.Click();
                 SelectZikrForCount.Click();
                 CountPlus.Click();
@@ -369,6 +372,8 @@ namespace Live_Earth_Map.Pages
             {
                 prayerTimesMenu.Click();
                 Thread.Sleep(3000);
+                adHelper.HandleAd();
+
                 PrayerTimeNotification.Click();
                 PrayerTimeNotification.Click();
                 driver.Navigate().Back();
@@ -386,6 +391,9 @@ namespace Live_Earth_Map.Pages
             {
                 hijriCalendarMenu.Click();
                 Thread.Sleep(3000);
+                adHelper.HandleAd();
+
+
                 NextMonth.Click();
                 PrevMonth.Click();
                 Date.Click();
@@ -406,6 +414,7 @@ namespace Live_Earth_Map.Pages
             {
                 hajjUmrahMenu.Click();
                 Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                adHelper.HandleAd();
             }
             catch (Exception ex)
             {

@@ -20,13 +20,14 @@ namespace Live_Earth_Map.Pages
             try
             {
                 // Wait for the ad element to be present
-                By adLocator = By.XPath("//YourAdXPath"); // Replace with the actual XPath of your ad element
+                By adLocator = By.XPath("//android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView");
                 wait.Until(ExpectedConditions.ElementIsVisible(adLocator));
 
                 // Interact with the ad - click on the close button, assuming it has one
-                By closeAdLocator = By.XPath("//YourCloseButtonXPath"); // Replace with the XPath of your close button
+                By closeAdLocator = By.XPath("//android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView");
                 IWebElement closeButton = wait.Until(ExpectedConditions.ElementToBeClickable(closeAdLocator));
                 closeButton.Click();
+
 
                 // Optionally, wait for the ad to close completely
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(adLocator));
