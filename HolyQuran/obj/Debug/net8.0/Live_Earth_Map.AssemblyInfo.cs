@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Live_Earth_Map")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eed50fc90c120d9cc8bf1aa5c25327134987da34")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbf42ba6578a7bef6de72920fd2b6ee32daf37bd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Live_Earth_Map")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Live_Earth_Map")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

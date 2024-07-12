@@ -17,13 +17,13 @@ namespace Live_Earth_Map.Test_Class
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
             //AlQuranSec.QuranLaunch();
-            //AlQuranSec.PerformQuranOperations();
-            //AlQuranSec.PerformSwipeOperations();
-            //AlQuranSec.QiblaFinder();
-            //AlQuranSec.MasjidFinder();
+            AlQuranSec.PerformQuranOperations();
+            AlQuranSec.PerformSwipeOperations();
+            AlQuranSec.QiblaFinder();
+            AlQuranSec.MasjidFinder();
             AlQuranSec.DigitalTasbeeh();
             AlQuranSec.PrayerTimes();
-            //   AlQuranSec.HijriCalendar();
+            AlQuranSec.HijriCalendar();
 
         }
         // [TestMethod]
