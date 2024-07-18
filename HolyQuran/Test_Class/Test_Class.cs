@@ -16,7 +16,7 @@ namespace Live_Earth_Map.Test_Class
         {
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
-            //AlQuranSec.QuranLaunch();
+            // AlQuranSec.QuranLaunch();
             AlQuranSec.PerformQuranOperations();
             AlQuranSec.PerformSwipeOperations();
             AlQuranSec.QiblaFinder();
@@ -26,7 +26,7 @@ namespace Live_Earth_Map.Test_Class
             AlQuranSec.HijriCalendar();
 
         }
-        // [TestMethod]
+        [TestMethod]
         public void HajjandUmrahSection()
         {
             ExtentTest test = Extent.CreateTest("Report");
@@ -37,7 +37,7 @@ namespace Live_Earth_Map.Test_Class
             HajjUmrah.FamousPlacesofMedina();
         }
 
-        // [TestMethod]
+        [TestMethod]
         public void AzkarSection()
         {
             ExtentTest test = Extent.CreateTest("Report");

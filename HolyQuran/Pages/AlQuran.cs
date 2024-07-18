@@ -1,4 +1,11 @@
-﻿namespace Live_Earth_Map.Pages
+﻿using AventStack.ExtentReports;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Support.UI;
+
+namespace Live_Earth_Map.Pages
 {
     class AlQuran
     {
@@ -118,14 +125,24 @@
             {
                 HandleException("Clicking LocationPermissionAllow", ex);
             }
+
+            try
+            {
+                ALQuranMenu.Click();
+                wait.Until(ExpectedConditions.ElementToBeClickable(ReadQuran)).Click();
+                Thread.Sleep(3000);
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking Read Quran", ex);
+            }
         }
         public void PerformQuranOperations()
         {
             try
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-                ALQuranMenu.Click();
-                //  wait.Until(ExpectedConditions.ElementToBeClickable(ReadQuran)).Click();
+                //  ALQuranMenu.Click();
                 Thread.Sleep(3000);
 
                 AlFatiha.Click();
@@ -311,14 +328,32 @@
             {
                 qiblaMenu.Click();
                 Thread.Sleep(1000);
+            }
+            catch (Exception ex)
+            {
+                HandleException("Qibla Finder Menu", ex);
+            }
+
+            try
+            {
                 ThemesQibla.Click();
+                Thread.Sleep(1000);
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("Qibla Finder Themes", ex);
+            }
+
+            try
+            {
                 Theme2.Click();
                 Thread.Sleep(1500);
                 driver.Navigate().Back();
             }
             catch (Exception ex)
             {
-                HandleException("Qibla Finder", ex);
+                HandleException("Qibla Finder Theme 2", ex);
             }
         }
 
