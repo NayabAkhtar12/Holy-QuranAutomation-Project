@@ -16,7 +16,7 @@ namespace Live_Earth_Map.Test_Class
         {
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
-            // AlQuranSec.QuranLaunch();
+            AlQuranSec.QuranLaunch();
             AlQuranSec.PerformQuranOperations();
             AlQuranSec.PerformSwipeOperations();
             AlQuranSec.QiblaFinder();
