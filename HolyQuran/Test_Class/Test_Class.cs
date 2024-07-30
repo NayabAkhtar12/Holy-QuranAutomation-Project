@@ -12,11 +12,22 @@ namespace Live_Earth_Map.Test_Class
         AlQuran Azkar;
 
         [TestMethod]
+        public void HolyQuranIn()
+        {
+            ExtentTest test = Extent.CreateTest("Report");
+            AlQuranSec = new AlQuran(driver, test);
+            AlQuranSec.DigitalTasbeeh();
+            AlQuranSec.PrayerTimes();
+            AlQuranSec.QiblaFinder();
+        }
+
+        // [TestMethod]
         public void HolyQuran()
         {
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
             AlQuranSec.QuranLaunch();
+            AlQuranSec.AlQuranDownload();
             AlQuranSec.PerformQuranOperations();
             AlQuranSec.PerformSwipeOperations();
             AlQuranSec.QiblaFinder();
@@ -24,8 +35,9 @@ namespace Live_Earth_Map.Test_Class
             AlQuranSec.DigitalTasbeeh();
             AlQuranSec.PrayerTimes();
             AlQuranSec.HijriCalendar();
-
         }
+
+        //}
         [TestMethod]
         public void HajjandUmrahSection()
         {

@@ -74,6 +74,15 @@ namespace Live_Earth_Map.Pages
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             try
             {
+                adHelper.HandleAd();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hanling Splash Ad", ex);
+            }
+
+            try
+            {
                 wait.Until(ExpectedConditions.ElementToBeClickable(Continue)).Click();
             }
             catch (Exception ex)
@@ -126,25 +135,63 @@ namespace Live_Earth_Map.Pages
                 HandleException("Clicking LocationPermissionAllow", ex);
             }
 
+
+        }
+
+        public void AlQuranDownload()
+        {
             try
             {
                 ALQuranMenu.Click();
-                wait.Until(ExpectedConditions.ElementToBeClickable(ReadQuran)).Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(40000);
             }
             catch (Exception ex)
             {
-                HandleException("Clicking Read Quran", ex);
+                HandleException("Clicking Quran Menu", ex);
             }
+
+
+            //try
+            //{
+
+            //WebDriverWait waitReadQuran = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
+
+            //waitReadQuran.Until(ExpectedConditions.ElementToBeClickable(ReadQuran));
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleException("Clicking Read Quran", ex);
+            //}
+
+            //   adHelper.HandleAd();
+
+            try
+            {
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking Back button Quran", ex);
+            }
+
         }
         public void PerformQuranOperations()
         {
             try
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-                //  ALQuranMenu.Click();
+                ALQuranMenu.Click();
+                adHelper.HandleAd();
                 Thread.Sleep(3000);
 
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking AlQuran and Ad", ex);
+            }
+            try
+            {
                 AlFatiha.Click();
                 Thread.Sleep(3000);
             }
@@ -152,7 +199,6 @@ namespace Live_Earth_Map.Pages
             {
                 HandleException("Clicking AlFatiha", ex);
             }
-
             try
             {
                 SelectReciterDropDown.Click();
@@ -324,10 +370,15 @@ namespace Live_Earth_Map.Pages
 
         public void QiblaFinder()
         {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+
             try
             {
-                qiblaMenu.Click();
-                Thread.Sleep(1000);
+                wait.Until(ExpectedConditions.ElementToBeClickable(qiblaMenu)).Click();
+                if (adHelper.IsAdPresent())
+                {
+                    adHelper.HandleAd();
+                }
             }
             catch (Exception ex)
             {
@@ -336,8 +387,7 @@ namespace Live_Earth_Map.Pages
 
             try
             {
-                ThemesQibla.Click();
-                Thread.Sleep(1000);
+                wait.Until(ExpectedConditions.ElementToBeClickable(ThemesQibla)).Click();
 
             }
             catch (Exception ex)
@@ -347,8 +397,7 @@ namespace Live_Earth_Map.Pages
 
             try
             {
-                Theme2.Click();
-                Thread.Sleep(1500);
+                wait.Until(ExpectedConditions.ElementToBeClickable(Theme2)).Click();
                 driver.Navigate().Back();
             }
             catch (Exception ex)
@@ -380,7 +429,17 @@ namespace Live_Earth_Map.Pages
             {
                 digitalTasbeehMenu.Click();
                 Thread.Sleep(3000);
-                adHelper.HandleAd();
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Qibla Finder Menu", ex);
+                }
 
                 EditZikrForCount.Click();
                 SelectZikrForCount.Click();
@@ -400,8 +459,17 @@ namespace Live_Earth_Map.Pages
             {
                 prayerTimesMenu.Click();
                 Thread.Sleep(3000);
-                adHelper.HandleAd();
-
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Qibla Finder Menu", ex);
+                }
                 PrayerTimeNotification.Click();
                 PrayerTimeNotification.Click();
                 driver.Navigate().Back();
@@ -867,6 +935,7 @@ namespace Live_Earth_Map.Pages
 
         IWebElement Surah2 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/textView5\" and @text=\"Surat Aal-E-Imran\"]");
         IWebElement CloseAd => driver.FindElementByXPath("//android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView");
+        IWebElement AdText => driver.FindElementByXPath("//android.widget.TextView[@text=\"Test Ad\"]");
 
 
     }
