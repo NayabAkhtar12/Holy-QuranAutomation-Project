@@ -11,7 +11,7 @@ namespace Live_Earth_Map.Test_Class
         AlQuran HajjUmrah;
         AlQuran Azkar;
 
-        [TestMethod]
+        //  [TestMethod]
         public void HolyQuranIn()
         {
             ExtentTest test = Extent.CreateTest("Report");
@@ -21,7 +21,7 @@ namespace Live_Earth_Map.Test_Class
             AlQuranSec.QiblaFinder();
         }
 
-        // [TestMethod]
+        [TestMethod]
         public void HolyQuran()
         {
             ExtentTest test = Extent.CreateTest("Report");

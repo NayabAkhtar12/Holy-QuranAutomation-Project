@@ -143,7 +143,7 @@ namespace Live_Earth_Map.Pages
             try
             {
                 ALQuranMenu.Click();
-                Thread.Sleep(40000);
+                Thread.Sleep(60000);
             }
             catch (Exception ex)
             {
