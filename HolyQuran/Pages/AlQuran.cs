@@ -341,6 +341,32 @@ namespace Live_Earth_Map.Pages
 
         }
 
+        public void Bookmarks()
+        {
+            try
+            {
+                AlFatiha.Click();
+                Thread.Sleep(3000);
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking AlFatiha", ex);
+            }
+
+
+            try
+            {
+                IWebElement AddressItem = driver.FindElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                ".scrollIntoView(new UiSelector().text(\"Address*\"))"));
+            }
+            catch (Exception ex)
+            {
+                HandleException("Scroll Issue occured", ex);
+            }
+
+
+        }
         public void PerformSwipeOperations()
         {
             try
@@ -937,6 +963,13 @@ namespace Live_Earth_Map.Pages
         IWebElement CloseAd => driver.FindElementByXPath("//android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView");
         IWebElement AdText => driver.FindElementByXPath("//android.widget.TextView[@text=\"Test Ad\"]");
 
+        IWebElement Surah_Baqara => driver.FindElementByXPath("");
+        IWebElement Surah3 => driver.FindElementByXPath("");
+        IWebElement Surah4 => driver.FindElementByXPath("");
+        IWebElement Surah5 => driver.FindElementByXPath("");
+        IWebElement Surah6 => driver.FindElementByXPath("");
+        IWebElement Surah_7 => driver.FindElementByXPath("");
+        IWebElement Surah8 => driver.FindElementByXPath("");
 
     }
 }
