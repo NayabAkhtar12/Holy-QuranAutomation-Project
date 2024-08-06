@@ -44,9 +44,8 @@ namespace Live_Earth_Map.Pages
                 {
                     // Assume a 7-second timer and wait for it to finish
                     System.Threading.Thread.Sleep(7000); // Adjust as needed
-
-                    // Locator for the close button (after timer ends)
-                    By closeButtonLocator = By.XPath("//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' ]");
+                                                         // Locator for the close button (after timer ends)
+                    By closeButtonLocator = By.XPath("//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ' ]");
                     IWebElement closeButton = wait.Until(ExpectedConditions.ElementToBeClickable(closeButtonLocator));
                     closeButton.Click();
                     Console.WriteLine("Timer ad handled.");
