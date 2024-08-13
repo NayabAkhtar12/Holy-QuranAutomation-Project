@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace HolyQuran.Pages
 {
-    class AlQuran
+    class Copy
     {
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
@@ -16,13 +16,57 @@ namespace HolyQuran.Pages
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
-        public AlQuran(AppiumDriver<AndroidElement> driver, ExtentTest test)
+        public Copy(AppiumDriver<AndroidElement> driver, ExtentTest test)
         {
             this.driver = driver;
             this.Test = test;
             this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
         }
 
+        public void AlQuranModule()
+        {
+            ExtentTest test = Extent.CreateTest("Al Quran Report 1");
+            try
+            {
+                // ALQuranMenu.Click();
+                AlFatiha.Click();
+                Thread.Sleep(3000);
+                SelectReciterDropDown.Click();
+                Thread.Sleep(3000);
+                SelectReciter.Click();
+                Thread.Sleep(3000);
+                PlaySurah.Click();
+                Thread.Sleep(3000);
+                NextAyah.Click();
+                Thread.Sleep(3000);
+                PrevAyah.Click();
+                Thread.Sleep(3000);
+                PlaySurah.Click();
+
+                BookMarkPage.Click();
+                Thread.Sleep(3000);
+                GotoTranslationsection.Click();
+                Thread.Sleep(3000);
+                ViewTranslation.Click();
+                Thread.Sleep(3000);
+                TranslationNextPage.Click();
+                Thread.Sleep(3000);
+                TranslationPrevPage.Click();
+                driver.Navigate().Back();
+                Swipe();
+                Swipe();
+                Swipe();
+                Swipe();
+                Swipe();
+                //Thread.Sleep(3000);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception occurred: " + ex.Message);
+                Test.Log(Status.Fail, $"Test failed due to: {ex.Message}");
+            }
+        }
 
         public void QuranLaunch()
         {
@@ -348,29 +392,11 @@ namespace HolyQuran.Pages
                 Swipe();
 
                 SurahBack.Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Surah Aal e Imran Swipe", ex);
-            }
-
-            try
-            {
-                SurahAnNisa.Click();
-                Swipe();
-                Thread.Sleep(3000);
-
-                Swipe();
-                Thread.Sleep(3000);
-
-                Swipe();
-
-                SurahBack.Click();
                 driver.Navigate().Back();
             }
             catch (Exception ex)
             {
-                HandleException("Surah An Nisa Swipe", ex);
+                HandleException("Surah2 Swipe", ex);
             }
         }
         private void HandleException(string action, Exception ex)
@@ -378,6 +404,476 @@ namespace HolyQuran.Pages
             Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
             Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
         }
+
+        public void QiblaFinder()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(qiblaMenu)).Click();
+                if (adHelper.IsAdPresent())
+                {
+                    adHelper.HandleAd();
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException("Qibla Finder Menu", ex);
+            }
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(ThemesQibla)).Click();
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("Qibla Finder Themes", ex);
+            }
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(Theme2)).Click();
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Qibla Finder Theme 2", ex);
+            }
+        }
+
+        public void MasjidFinder()
+        {
+            try
+            {
+                masjidFinderMenu.Click();
+                Thread.Sleep(3000);
+                //  ViewList.Click();
+                driver.Navigate().Back();
+                Thread.Sleep(3000);
+            }
+            catch (Exception ex)
+            {
+                HandleException("Masjid Finder", ex);
+
+            }
+        }
+
+        public void DigitalTasbeeh()
+        {
+            try
+            {
+                digitalTasbeehMenu.Click();
+                Thread.Sleep(3000);
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Qibla Finder Menu", ex);
+                }
+
+                EditZikrForCount.Click();
+                SelectZikrForCount.Click();
+                CountPlus.Click();
+                CountPlus.Click();
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Digital Tasbeeh", ex);
+            }
+        }
+
+        public void PrayerTimes()
+        {
+            try
+            {
+                prayerTimesMenu.Click();
+                Thread.Sleep(3000);
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Qibla Finder Menu", ex);
+                }
+                PrayerTimeNotification.Click();
+                PrayerTimeNotification.Click();
+                driver.Navigate().Back();
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("Prayer Times", ex);
+            }
+        }
+
+        public void HijriCalendar()
+        {
+            try
+            {
+                hijriCalendarMenu.Click();
+                Thread.Sleep(3000);
+                adHelper.HandleAd();
+
+
+                NextMonth.Click();
+                PrevMonth.Click();
+                Date.Click();
+                NextMonth.Click();
+                Date.Click();
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Calender", ex);
+
+            }
+        }
+
+        public void HajjGuide()
+        {
+            try
+            {
+                hajjUmrahMenu.Click();
+                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                adHelper.HandleAd();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hajj and Umrah", ex);
+            }
+
+            try
+            {
+                HajjGuideMenu.Click();
+                HajjGuideDay1.Click();
+                Thread.Sleep(3000);
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hajj Day 1", ex);
+            }
+
+            try
+            {
+                HajjGuideDay2.Click();
+                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hajj Day 2", ex);
+            }
+
+            try
+            {
+                HajjGuideDay3.Click();
+                Thread.Sleep(3000);
+                driver.Navigate().Back();
+
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hajj Day 3", ex);
+            }
+
+            try
+            {
+                HajjGuideDay4.Click();
+                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hajj Day 4", ex);
+            }
+
+            try
+            {
+                HajjGuideDay5.Click();
+                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                driver.Navigate().Back();
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hajj Day 5", ex);
+            }
+
+        }
+        public void UmrahGuide()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            try
+            {
+                UmrahGuideMenu.Click();
+                wait.Until(ExpectedConditions.ElementToBeClickable(UmrahIhram)).Click();
+                Thread.Sleep(3000);
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Umrah Ihram", ex);
+            }
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(UmrahTawaf)).Click();
+                Thread.Sleep(3000);
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Umrah Tawaf", ex);
+            }
+            try
+            {
+                UmrahSAEE.Click();
+                Thread.Sleep(3000);
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Umrah Sa'ee", ex);
+            }
+            try
+            {
+                UmrahShaving.Click();
+                Thread.Sleep(3000);
+                driver.Navigate().Back();
+                driver.Navigate().Back();
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("Umrah Shaving", ex);
+            }
+        }
+
+        public void FamousPlacesofMakkah()
+        {
+            try
+            {
+                FamousPlacesofMakkahMenu.Click();
+                Thread.Sleep(3000);
+                FamousPlacesofMakkahKaaba.Click();
+                Thread.Sleep(3000);
+
+                driver.Navigate().Back();
+                driver.Navigate().Back();
+
+                FamousPlacesofMakkahMina.Click();
+                Thread.Sleep(3000);
+
+                driver.Navigate().Back();
+                driver.Navigate().Back();
+                //  driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Kaaba/Mina Location ", ex);
+            }
+        }
+        public void FamousPlacesofMedina()
+        {
+            try
+            {
+                FamousPlacesofMedinahMenu.Click();
+                Thread.Sleep(3000);
+
+                FamousPlacesofMedinah_AlNabwi.Click();
+                Thread.Sleep(3000);
+
+                driver.Navigate().Back();
+                driver.Navigate().Back();
+                FamousPlacesofMedinah_UhudMountain.Click();
+                Thread.Sleep(3000);
+
+                driver.Navigate().Back();
+                driver.Navigate().Back();
+                Thread.Sleep(1500);
+                driver.Navigate().Back();
+                HajhUmrahUQibla.Click();
+                Thread.Sleep(1500);
+                driver.Navigate().Back();
+                Thread.Sleep(1500);
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Medina Places", ex);
+            }
+        }
+        public void Azkar()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            try
+            {
+                azkarMenu.Click();
+                Thread.Sleep(3000);
+            }
+            catch (Exception ex)
+            {
+                HandleException("Azkar Menu", ex);
+            }
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(Azkar_DuaSelection1)).Click();
+                Thread.Sleep(3000);
+            }
+
+            catch (Exception ex)
+            {
+                HandleException("Dua 1", ex);
+            }
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(AddtoBookmark)).Click();
+
+            }
+
+            catch (Exception ex)
+            {
+                HandleException("Add to Bookmark", ex);
+            }
+
+            try
+            {
+                IWebElement ScrolltoLastDua = ScrollToElementByText("Praise is to Allah Who gave strength to my body, He returned my soul to me and permitted me to remember Him.");
+                Thread.Sleep(3000);
+                driver.Navigate().Back();
+            }
+
+            catch (Exception ex)
+            {
+                HandleException("Dua 1 scrolling", ex);
+                Thread.Sleep(20);
+            }
+            //Dua 2
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(Azkar_DuaSelection2)).Click();
+                Thread.Sleep(3000);
+            }
+
+            catch (Exception ex)
+            {
+                HandleException("Dua 2", ex);
+            }
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(AddtoBookmark)).Click();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking AddtoBookmark", ex);
+            }
+
+            try
+            {
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Navigating back after adding to bookmark", ex);
+            }
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(BooksMarkAddedSec)).Click();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking BooksMarkAddedSec", ex);
+            }
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(ViewBookmark)).Click();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking ViewBookmark", ex);
+            }
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(AddtoBookmark)).Click();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking AddtoBookmark again", ex);
+            }
+
+            try
+            {
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Navigating back after second AddtoBookmark click", ex);
+            }
+
+            try
+            {
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Navigating back again", ex);
+            }
+
+            try
+            {
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Navigating back final time", ex);
+            }
+        }
+
+        public void NamesOfAllah()
+        {
+            try
+            {
+                Namesnine.Click();
+                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                                    // Perform other operations related to 99 Names of Allah here
+            }
+            catch (Exception ex)
+            {
+                HandleException("99 Names", ex);
+            }
+        }
+
+        //public void NamesOfMuhammad()
+        //{
+        //    try
+        //    {
+        //        namesOfMuhammadMenu.Click();
+        //        Thread.Sleep(3000); // Assuming a delay after click for the view to load
+        //                            // Perform other operations related to 99 Names of Muhammad here
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Exception occurred: " + ex.Message);
+        //        Test.Log(Status.Fail, $"Test failed due to: {ex.Message}");
+        //    }
+        //}
 
         public void Swipe()
         {
@@ -478,7 +974,7 @@ namespace HolyQuran.Pages
         IWebElement CloseAd => driver.FindElementByXPath("//android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView");
         IWebElement AdText => driver.FindElementByXPath("//android.widget.TextView[@text=\"Test Ad\"]");
 
-        IWebElement SurahAnNisa => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/textView5\" and @text=\"Surat An-Nisa\"]");
+        IWebElement Surah_Baqara => driver.FindElementByXPath("");
         IWebElement Surah3 => driver.FindElementByXPath("");
         IWebElement Surah4 => driver.FindElementByXPath("");
         IWebElement Surah5 => driver.FindElementByXPath("");

@@ -5,7 +5,7 @@ using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
 
-namespace Live_Earth_Map.Pages
+namespace HolyQuran.Pages
 {
     class HajjUmrahSection
     {

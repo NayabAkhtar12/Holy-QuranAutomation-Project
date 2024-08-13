@@ -4,7 +4,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 
-namespace Live_Earth_Map.Pages
+namespace HolyQuran.Pages
 {
     class DigitalTasbeeh
     {

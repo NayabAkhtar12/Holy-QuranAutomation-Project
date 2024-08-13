@@ -1,8 +1,8 @@
 ﻿using AventStack.ExtentReports;
-using Live_Earth_Map.Core;
-using Live_Earth_Map.Pages;
+using HolyQuran.Core;
+using HolyQuran.Pages;
 
-namespace Live_Earth_Map.Test_Class
+namespace HolyQuran.Test_Class
 {
     [TestClass]
     public class Test_Class : TestInitiallize
@@ -33,9 +33,9 @@ namespace Live_Earth_Map.Test_Class
         {
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
-            //    AlQuranSec.QuranLaunch();
-            //  AlQuranSec.AlQuranDownload();
-            AlQuranSec.PerformQuranOperations();
+            //     AlQuranSec.QuranLaunch();
+            //   AlQuranSec.AlQuranDownload();
+            //  AlQuranSec.PerformQuranOperations();
             AlQuranSec.PerformSwipeOperations();
         }
 

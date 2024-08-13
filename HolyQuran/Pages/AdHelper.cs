@@ -3,7 +3,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Support.UI;
 
-namespace Live_Earth_Map.Pages
+namespace HolyQuran.Pages
 {
     public class AdHelper
     {

@@ -3,7 +3,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 
-namespace Live_Earth_Map.Core
+namespace HolyQuran.Core
 {
     public class TestInitiallize
     {

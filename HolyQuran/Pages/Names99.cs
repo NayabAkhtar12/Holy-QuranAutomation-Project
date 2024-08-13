@@ -4,7 +4,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 
-namespace Live_Earth_Map.Pages
+namespace HolyQuran.Pages
 {
     class Names99
     {
@@ -35,6 +35,20 @@ namespace Live_Earth_Map.Pages
             try
             {
                 Namesnine.Click();
+
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Issue", ex);
+                }
+
                 Thread.Sleep(3000); // Assuming a delay after click for the view to load
                                     // Perform other operations related to 99 Names of Allah here
             }
@@ -42,6 +56,8 @@ namespace Live_Earth_Map.Pages
             {
                 HandleException("99 Names", ex);
             }
+
+            driver.Navigate().Back();
         }
 
         //public void NamesOfMuhammad()

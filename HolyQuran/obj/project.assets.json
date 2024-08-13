@@ -7468,9 +7468,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Automation-Projects\\Holy-QuranAutomation-Project\\HolyQuran\\Live_Earth_Map.csproj",
-      "projectName": "Live_Earth_Map",
-      "projectPath": "D:\\Automation-Projects\\Holy-QuranAutomation-Project\\HolyQuran\\Live_Earth_Map.csproj",
+      "projectUniqueName": "D:\\Automation-Projects\\Holy-QuranAutomation-Project\\HolyQuran\\HolyQuran.csproj",
+      "projectName": "HolyQuran",
+      "projectPath": "D:\\Automation-Projects\\Holy-QuranAutomation-Project\\HolyQuran\\HolyQuran.csproj",
       "packagesPath": "C:\\Users\\nayab\\.nuget\\packages\\",
       "outputPath": "D:\\Automation-Projects\\Holy-QuranAutomation-Project\\HolyQuran\\obj\\",
       "projectStyle": "PackageReference",
