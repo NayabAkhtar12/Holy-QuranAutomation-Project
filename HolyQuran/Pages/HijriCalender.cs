@@ -35,8 +35,18 @@ namespace HolyQuran.Pages
             {
                 hijriCalendarMenu.Click();
                 Thread.Sleep(3000);
-                adHelper.HandleAd();
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
 
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Issue", ex);
+                }
 
                 NextMonth.Click();
                 PrevMonth.Click();

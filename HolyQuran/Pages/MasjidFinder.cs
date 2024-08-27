@@ -37,6 +37,18 @@ namespace HolyQuran.Pages
                 masjidFinderMenu.Click();
                 Thread.Sleep(3000);
                 //  ViewList.Click();
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Issue", ex);
+                }
                 driver.Navigate().Back();
                 Thread.Sleep(3000);
             }

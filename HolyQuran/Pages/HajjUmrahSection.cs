@@ -176,6 +176,7 @@ namespace HolyQuran.Pages
                 Thread.Sleep(3000);
                 driver.Navigate().Back();
                 driver.Navigate().Back();
+                driver.Navigate().Back();
 
             }
             catch (Exception ex)

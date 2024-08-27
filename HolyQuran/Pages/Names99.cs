@@ -57,6 +57,116 @@ namespace HolyQuran.Pages
                 HandleException("99 Names", ex);
             }
 
+            // 99 Names Read
+            try
+            {
+                ReadNamesAllah.Click();
+
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Handling Issue 99 Names Read", ex);
+                }
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                HandleException("99 Names Read Issue", ex);
+            }
+
+            // 99 Names Listen
+            try
+            {
+                ListenNamesAllah.Click();
+
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Handling Issue 99 Names Allah  Read", ex);
+                }
+
+                Nameplay.Click();
+                Thread.Sleep(6000);
+                Nameplay.Click();
+
+                driver.Navigate().Back();
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("99 Names  Allah listen Issue", ex);
+            }
+
+            //99 Names Nabi section
+
+            try
+            {
+                ReadNamesHusna.Click();
+
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Handling Issue 99 Names Nabi  Read", ex);
+                }
+                driver.Navigate().Back();
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("99 Names Read Nabi Issue", ex);
+            }
+
+            // 99 Names Nabi  Listen
+            try
+            {
+                ListenNamesNabi.Click();
+
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Handling Issue 99 Names Nabi  Listening Issue", ex);
+                }
+
+                Nameplay.Click();
+                Thread.Sleep(6000);
+                Nameplay.Click();
+                driver.Navigate().Back();
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("99 Names  Issue", ex);
+            }
+
+
             driver.Navigate().Back();
         }
 
@@ -174,11 +284,12 @@ namespace HolyQuran.Pages
         IWebElement CloseAd => driver.FindElementByXPath("//android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView");
         IWebElement AdText => driver.FindElementByXPath("//android.widget.TextView[@text=\"Test Ad\"]");
 
-        IWebElement Surah_Baqara => driver.FindElementByXPath("");
-        IWebElement Surah3 => driver.FindElementByXPath("");
-        IWebElement Surah4 => driver.FindElementByXPath("");
-        IWebElement Surah5 => driver.FindElementByXPath("");
-        IWebElement Surah6 => driver.FindElementByXPath("");
+
+        IWebElement ReadNamesHusna => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/iv_read_nabi_names");
+        IWebElement ListenNamesNabi => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/iv_listen_nabi_names");
+        IWebElement ReadNamesAllah => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/iv_read_asma");
+        IWebElement ListenNamesAllah => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/iv_listen_asma");
+        IWebElement Nameplay => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivPP");
         IWebElement Surah_7 => driver.FindElementByXPath("");
         IWebElement Surah8 => driver.FindElementByXPath("");
 

@@ -28,14 +28,6 @@ namespace HolyQuran.Pages
         {
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            try
-            {
-                adHelper.HandleAd();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Hanling Splash Ad", ex);
-            }
 
             try
             {
@@ -45,6 +37,17 @@ namespace HolyQuran.Pages
             {
                 HandleException("Clicking Continue", ex);
             }
+
+            try
+            {
+                adHelper.HandleAd();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Hanling Splash Ad", ex);
+            }
+
+
 
             try
             {
@@ -90,7 +93,6 @@ namespace HolyQuran.Pages
             {
                 HandleException("Clicking LocationPermissionAllow", ex);
             }
-
 
         }
 

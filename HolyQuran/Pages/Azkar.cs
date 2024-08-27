@@ -36,6 +36,19 @@ namespace HolyQuran.Pages
             try
             {
                 azkarMenu.Click();
+
+                try
+                {
+                    if (adHelper.IsAdPresent())
+                    {
+                        adHelper.HandleAd();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    HandleException("Ad Issue", ex);
+                }
                 Thread.Sleep(3000);
             }
             catch (Exception ex)
