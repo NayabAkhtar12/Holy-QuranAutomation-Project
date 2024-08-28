@@ -90,33 +90,33 @@ namespace HolyQuran.Pages
                 Thread.Sleep(20);
             }
             //Dua 2
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(Azkar_DuaSelection2)).Click();
-                Thread.Sleep(3000);
-            }
+            //try
+            //{
+            //    wait.Until(ExpectedConditions.ElementToBeClickable(Azkar_DuaSelection2)).Click();
+            //    Thread.Sleep(3000);
+            //}
 
-            catch (Exception ex)
-            {
-                HandleException("Dua 2", ex);
-            }
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(AddtoBookmark)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking AddtoBookmark", ex);
-            }
+            //catch (Exception ex)
+            //{
+            //    HandleException("Dua 2", ex);
+            //}
+            //try
+            //{
+            //    wait.Until(ExpectedConditions.ElementToBeClickable(AddtoBookmark)).Click();
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleException("Clicking AddtoBookmark", ex);
+            //}
 
-            try
-            {
-                driver.Navigate().Back();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Navigating back after adding to bookmark", ex);
-            }
+            //try
+            //{
+            //    driver.Navigate().Back();
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleException("Navigating back after adding to bookmark", ex);
+            //}
 
             try
             {
@@ -130,38 +130,32 @@ namespace HolyQuran.Pages
             try
             {
                 wait.Until(ExpectedConditions.ElementToBeClickable(ViewBookmark)).Click();
+                driver.Navigate().Back();
             }
             catch (Exception ex)
             {
                 HandleException("Clicking ViewBookmark", ex);
             }
 
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(AddtoBookmark)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking AddtoBookmark again", ex);
-            }
+            //try
+            //{
+            //    wait.Until(ExpectedConditions.ElementToBeClickable(AddtoBookmark)).Click();
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleException("Clicking AddtoBookmark again", ex);
+            //}
 
-            try
-            {
-                driver.Navigate().Back();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Navigating back after second AddtoBookmark click", ex);
-            }
+            //try
+            //{
+            //    driver.Navigate().Back();
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleException("Navigating back after second AddtoBookmark click", ex);
+            //}
 
-            try
-            {
-                driver.Navigate().Back();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Navigating back again", ex);
-            }
+
 
             try
             {

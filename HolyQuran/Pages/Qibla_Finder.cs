@@ -34,7 +34,7 @@ namespace HolyQuran.Pages
 
         public void QiblaFinder()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             try
             {
@@ -48,7 +48,8 @@ namespace HolyQuran.Pages
             {
                 HandleException("Qibla Finder Menu", ex);
             }
-
+            //     Thread.Sleep(2000);
+            //     ThemesQibla.Click();
             try
             {
                 wait.Until(ExpectedConditions.ElementToBeClickable(ThemesQibla)).Click();
@@ -107,7 +108,7 @@ namespace HolyQuran.Pages
         IWebElement TranslationNextPage => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivNext");
         IWebElement qiblaMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivqibla");
         IWebElement ThemesQibla => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivChangeTasbeeh");
-        IWebElement Theme2 => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/clqibla5");
+        IWebElement Theme2 => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/clqibla2");
 
         IWebElement masjidFinderMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivmasjid");
         IWebElement ViewList1 => driver.FindElementById("");

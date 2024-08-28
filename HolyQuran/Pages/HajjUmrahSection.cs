@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
 
 namespace HolyQuran.Pages
@@ -36,7 +35,7 @@ namespace HolyQuran.Pages
             try
             {
                 hajjUmrahMenu.Click();
-                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                // Thread.Sleep(3000); // Assuming a delay after click for the view to load
                 try
                 {
                     if (adHelper.IsAdPresent())
@@ -69,7 +68,7 @@ namespace HolyQuran.Pages
                     HandleException("Hajj Guide Menu Ad Failed", ex);
                 }
                 HajjGuideDay1.Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 driver.Navigate().Back();
             }
             catch (Exception ex)
@@ -80,7 +79,7 @@ namespace HolyQuran.Pages
             try
             {
                 HajjGuideDay2.Click();
-                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                Thread.Sleep(1000); // Assuming a delay after click for the view to load
                 driver.Navigate().Back();
             }
             catch (Exception ex)
@@ -91,7 +90,7 @@ namespace HolyQuran.Pages
             try
             {
                 HajjGuideDay3.Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 driver.Navigate().Back();
 
 
@@ -104,7 +103,7 @@ namespace HolyQuran.Pages
             try
             {
                 HajjGuideDay4.Click();
-                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                Thread.Sleep(1000); // Assuming a delay after click for the view to load
                 driver.Navigate().Back();
             }
             catch (Exception ex)
@@ -115,7 +114,7 @@ namespace HolyQuran.Pages
             try
             {
                 HajjGuideDay5.Click();
-                Thread.Sleep(3000); // Assuming a delay after click for the view to load
+                Thread.Sleep(2000); // Assuming a delay after click for the view to load
                 driver.Navigate().Back();
                 driver.Navigate().Back();
             }
@@ -143,7 +142,7 @@ namespace HolyQuran.Pages
                     HandleException("Ad Failed umrah", ex);
                 }
                 wait.Until(ExpectedConditions.ElementToBeClickable(UmrahIhram)).Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 driver.Navigate().Back();
             }
             catch (Exception ex)
@@ -153,7 +152,7 @@ namespace HolyQuran.Pages
             try
             {
                 wait.Until(ExpectedConditions.ElementToBeClickable(UmrahTawaf)).Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
                 driver.Navigate().Back();
             }
             catch (Exception ex)
@@ -163,7 +162,7 @@ namespace HolyQuran.Pages
             try
             {
                 UmrahSAEE.Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 driver.Navigate().Back();
             }
             catch (Exception ex)
@@ -173,7 +172,7 @@ namespace HolyQuran.Pages
             try
             {
                 UmrahShaving.Click();
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 driver.Navigate().Back();
                 driver.Navigate().Back();
                 driver.Navigate().Back();
@@ -242,11 +241,6 @@ namespace HolyQuran.Pages
 
         }
 
-        public void Swipe()
-        {
-            TouchAction act = new TouchAction(driver);
-            act.LongPress(200, 180).Wait(5000).MoveTo(900, 180).Release().Perform();
-        }
 
         public IWebElement ScrollToElementByText(string text)
         {

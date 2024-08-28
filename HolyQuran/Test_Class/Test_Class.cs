@@ -28,13 +28,13 @@ namespace HolyQuran.Test_Class
         //    AlQuranSec.QiblaFinder();
         //}
 
-        //  [TestMethod]
+        [TestMethod]
         public void HolyQuran()
         {
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
-            AlQuranSec.QuranLaunch();
-            AlQuranSec.AlQuranDownload();
+            //AlQuranSec.QuranLaunch();
+            //AlQuranSec.AlQuranDownload();
             AlQuranSec.PerformQuranOperations();
             AlQuranSec.PerformSwipeOperations();
         }
