@@ -12,7 +12,7 @@ namespace HolyQuran.Pages
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
-        private AdHelper adHelper;
+        private AdHelperC adHelper;
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
@@ -20,7 +20,7 @@ namespace HolyQuran.Pages
         {
             this.driver = driver;
             this.Test = test;
-            this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
+            this.adHelper = new AdHelperC(driver); // Initialize AdHelper with the correct driver type
         }
 
 
@@ -40,8 +40,28 @@ namespace HolyQuran.Pages
 
             try
             {
-                adHelper.HandleAd();
+                if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
+                {
+                    adHelper.HandleAdCrossButton();
+                }
+
+                else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
+
+                {
+                    adHelper.HandleAdCloseButton();
+
+                }
+
+                else
+                {
+                    Console.WriteLine("No Ad found");
+                }
             }
+
+            //try
+            //{
+            //    adHelper.HandleAd();
+            //}
             catch (Exception ex)
             {
                 HandleException("Hanling Splash Ad", ex);
@@ -94,6 +114,7 @@ namespace HolyQuran.Pages
                 HandleException("Clicking LocationPermissionAllow", ex);
             }
 
+
         }
 
         public void AlQuranDownload()
@@ -142,11 +163,22 @@ namespace HolyQuran.Pages
                 ALQuranMenu.Click();
                 try
                 {
-                    if (adHelper.IsAdPresent())
+                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
                     {
-                        adHelper.HandleAd();
+                        adHelper.HandleAdCrossButton();
                     }
 
+                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
+
+                    {
+                        adHelper.HandleAdCloseButton();
+
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("No Ad found");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -315,6 +347,31 @@ namespace HolyQuran.Pages
             try
             {
                 AlFatiha.Click();
+                try
+                {
+                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
+                    {
+                        adHelper.HandleAdCrossButton();
+                    }
+
+                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
+
+                    {
+                        adHelper.HandleAdCloseButton();
+
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("No Ad found");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    HandleException("Clicking Ad on AlFatiha", ex);
+                }
+
                 Thread.Sleep(3000);
             }
             catch (Exception ex)
@@ -340,7 +397,32 @@ namespace HolyQuran.Pages
         {
             try
             {
+
                 Surah2.Click();
+                try
+                {
+                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
+                    {
+                        adHelper.HandleAdCrossButton();
+                    }
+
+                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
+
+                    {
+                        adHelper.HandleAdCloseButton();
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("No Ad found");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    HandleException("Clicking Ad on AlFatiha", ex);
+                }
+
                 Swipe();
                 Thread.Sleep(3000);
 
@@ -359,6 +441,30 @@ namespace HolyQuran.Pages
             try
             {
                 SurahAnNisa.Click();
+                try
+                {
+                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
+                    {
+                        adHelper.HandleAdCrossButton();
+                    }
+
+                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
+
+                    {
+                        adHelper.HandleAdCloseButton();
+
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("No Ad found");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    HandleException("Clicking Ad on AlFatiha", ex);
+                }
                 Swipe();
                 Thread.Sleep(3000);
 
@@ -416,77 +522,10 @@ namespace HolyQuran.Pages
         IWebElement ViewTranslation => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/textView5\" and @text=\"Azerbaijani\"]");
         IWebElement TranslationPrevPage => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivPrevious");
         IWebElement TranslationNextPage => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivNext");
-        IWebElement qiblaMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivqibla");
-        IWebElement ThemesQibla => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivChangeTasbeeh");
-        IWebElement Theme2 => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/clqibla5");
 
-        IWebElement masjidFinderMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivmasjid");
-        IWebElement ViewList1 => driver.FindElementById("");
-
-        IWebElement digitalTasbeehMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivtasbeeh");
-        IWebElement EditZikrForCount => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivChangeTasbeeh");
-        IWebElement SelectZikrForCount => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvZikar\" and @text=\"بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ\"]");
-        IWebElement CountPlus => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivTasbeehbtncount");
-        IWebElement TasbeehReset => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivTasbeehbtnreset");
-        IWebElement TasbeehResetYes => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvYes");
-        IWebElement TasbeehResetNo => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvno");
-
-
-        IWebElement prayerTimesMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivprayers");
-        IWebElement PrayerTimeNotification => driver.FindElementByXPath("(//android.widget.ImageView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ib_notification\"])[3]");
-
-        IWebElement hijriCalendarMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivcalendar");
-        IWebElement PrevMonth => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/next_month");
-        IWebElement NextMonth => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/next_month");
-        IWebElement Date => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/gregorian_calendar_day\" and @text=\"14\"]");
-
-
-        IWebElement hajjUmrahMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivnameshusna");
-        IWebElement HajjGuideMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivhajj");
-        IWebElement HajjGuideDay1 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDayDesc\" and @text=\"8th of Dhul Hijjah\"]");
-        IWebElement HajjGuideDay2 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDayDesc\" and @text=\"9th of Dhul Hijjah\"]");
-        IWebElement HajjGuideDay3 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDayDesc\" and @text=\"10th of Dhul Hijjah\"]");
-        IWebElement HajjGuideDay4 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDayDesc\" and @text=\"11th of Dhul Hijjah\"]");
-        IWebElement HajjGuideDay5 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDayDesc\" and @text=\"12th of Dhul Hijjah\"]");
-        IWebElement HajjGuideDay6 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDayDesc\" and @text=\"13th of Dhul Hijjah\"]");
-
-        IWebElement UmrahGuideMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivumrah");
-        IWebElement UmrahIhram => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"IHRAM\"]");
-        IWebElement UmrahTawaf => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"TAWAAF\"]");
-        IWebElement UmrahSAEE => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"SA’EE\"]");
-        IWebElement UmrahShaving => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"SHAVING\"]");
-
-        IWebElement FamousPlacesofMakkahMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivmakkah");
-        IWebElement FamousPlacesofMakkahKaaba => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"Kaaba\"]");
-        IWebElement FamousPlacesofMakkahMina => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"Mina\"]");
-
-        IWebElement FamousPlacesofMedinahMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivmadina");
-        IWebElement FamousPlacesofMedinah_AlNabwi => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"Al Masjid an Nabawi\"]");
-        IWebElement FamousPlacesofMedinah_UhudMountain => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/tvDay\" and @text=\"Uhud Mountain\"]");
-        IWebElement HajhUmrahUQibla => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivqibla");
-
-        IWebElement azkarMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivazkar");
-        IWebElement Azkar_DuaSelection1 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/txtDuaName\" and @text=\"Upon waking up\"]");
-        IWebElement Azkar_DuaSelection2 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/txtDuaName\" and @text=\"Before Undressing\"]");
-        IWebElement AddtoBookmark => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/button_star");
-        IWebElement ViewBookmark => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/txtDuaName");
-        IWebElement BooksMarkAddedSec => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/action_bookmarks");
-
-        IWebElement Namesnine => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivnamesnabi");
-        IWebElement ReadQuran => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/button");
         IWebElement SurahBack => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/back");
 
         IWebElement Surah2 => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/textView5\" and @text=\"Surat Aal-E-Imran\"]");
-        IWebElement CloseAd => driver.FindElementByXPath("//android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView");
-        IWebElement AdText => driver.FindElementByXPath("//android.widget.TextView[@text=\"Test Ad\"]");
-
         IWebElement SurahAnNisa => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/textView5\" and @text=\"Surat An-Nisa\"]");
-        IWebElement Surah3 => driver.FindElementByXPath("");
-        IWebElement Surah4 => driver.FindElementByXPath("");
-        IWebElement Surah5 => driver.FindElementByXPath("");
-        IWebElement Surah6 => driver.FindElementByXPath("");
-        IWebElement Surah_7 => driver.FindElementByXPath("");
-        IWebElement Surah8 => driver.FindElementByXPath("");
-
     }
 }

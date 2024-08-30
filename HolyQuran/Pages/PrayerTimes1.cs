@@ -6,20 +6,20 @@ using OpenQA.Selenium.Appium.MultiTouch;
 
 namespace HolyQuran.Pages
 {
-    class PrayerTimes
+    class PrayerTimes1
     {
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
-        private AdHelperC adHelper;
+        private AdHelper adHelper;
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
-        public PrayerTimes(AppiumDriver<AndroidElement> driver, ExtentTest test)
+        public PrayerTimes1(AppiumDriver<AndroidElement> driver, ExtentTest test)
         {
             this.driver = driver;
             this.Test = test;
-            this.adHelper = new AdHelperC(driver); // Initialize AdHelper with the correct driver type
+            this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
         }
 
 
@@ -33,27 +33,15 @@ namespace HolyQuran.Pages
             try
             {
                 //   prayerTimesMenu.Click();
-                //Thread.Sleep(3000);
+                Thread.Sleep(3000);
 
 
 
                 try
                 {
-                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
+                    if (adHelper.IsAdPresent())
                     {
-                        adHelper.HandleAdCrossButton();
-                    }
-
-                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
-
-                    {
-                        adHelper.HandleAdCloseButton();
-
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("No Ad found");
+                        adHelper.HandleAd();
                     }
                 }
                 catch (Exception ex)
@@ -81,8 +69,9 @@ namespace HolyQuran.Pages
             return driver.FindElement(MobileBy.AndroidUIAutomator(
                 $"new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"{text}\"))"));
         }
-        IWebElement PrayerTimeNotification => driver.FindElementByXPath("(//android.widget.ImageView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ib_notification\"])[3]");
 
+        IWebElement prayerTimesMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivprayers");
+        IWebElement PrayerTimeNotification => driver.FindElementByXPath("(//android.widget.ImageView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ib_notification\"])[3]");
 
 
 

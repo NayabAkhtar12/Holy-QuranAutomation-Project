@@ -18,18 +18,19 @@ namespace HolyQuran.Test_Class
         Azkar Azkar;
         Names99 Names;
 
-        //  [TestMethod]
-        //public void HolyQuranIn()
-        //{
-        //    ExtentTest test = Extent.CreateTest("Report");
-        //    AlQuranSec = new AlQuran(driver, test);
-        //    AlQuranSec.DigitalTasbeeh();
-        //    AlQuranSec.PrayerTimes();
-        //    AlQuranSec.QiblaFinder();
-        //}
+        PremiumandMenu Premiumand;
 
         [TestMethod]
-        public void HolyQuran()
+        public void HolyQuranStartUp()
+        {
+            ExtentTest test = Extent.CreateTest("Report");
+            AlQuranSec = new AlQuran(driver, test);
+            AlQuranSec.QuranLaunch();
+            AlQuranSec.AlQuranDownload();
+        }
+
+        [TestMethod]
+        public void HolyQuranOperations()
         {
             ExtentTest test = Extent.CreateTest("Report");
             AlQuranSec = new AlQuran(driver, test);
@@ -109,6 +110,13 @@ namespace HolyQuran.Test_Class
             Names.NamesOfAllah();
         }
 
+        [TestMethod]
+        public void PremiumandMenu()
+        {
+            ExtentTest test = Extent.CreateTest("Report");
+            Premiumand = new PremiumandMenu(driver, test);
+            Premiumand.PremiumandMenuMethod();
+        }
 
     }
 }

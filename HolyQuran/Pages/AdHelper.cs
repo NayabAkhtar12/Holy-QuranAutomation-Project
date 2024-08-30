@@ -13,7 +13,7 @@ namespace HolyQuran.Pages
         public AdHelper(AppiumDriver<AndroidElement> driver)
         {
             this.driver = driver;
-            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(25));
         }
 
         public void HandleAd()
@@ -23,8 +23,8 @@ namespace HolyQuran.Pages
             try
             {
                 // Try to find the cross button
-                By crossButtonLocator = By.XPath("//android.widget.TextView[@content-desc='close' or @text='×']");
-                By mergedLocator = By.XPath("//android.widget.TextView[@content-desc='close' or @text='×'] | //android.widget.Button");
+                // By crossButtonLocator = By.XPath("//android.widget.TextView[@content-desc='close' or @text='×']");
+                By mergedLocator = By.XPath("//android.widget.TextView[(@content-desc='close' or @text='×')] | //android.widget.Button");
 
                 IWebElement crossButton = wait.Until(ExpectedConditions.ElementToBeClickable(mergedLocator));
                 crossButton.Click();
@@ -43,8 +43,8 @@ namespace HolyQuran.Pages
                 try
                 {
                     // Assume a 7-second timer and wait for it to finish
-                    System.Threading.Thread.Sleep(7000); // Adjust as needed
-                                                         // Locator for the close button (after timer ends)
+                    Thread.Sleep(20000); // Adjust as needed
+                                         // Locator for the close button (after timer ends)
                     By closeButtonLocator = By.XPath("//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ' ]");
                     IWebElement closeButton = wait.Until(ExpectedConditions.ElementToBeClickable(closeButtonLocator));
                     closeButton.Click();
@@ -68,6 +68,21 @@ namespace HolyQuran.Pages
             {
                 // Check for any known ad element by their text or other attributes
                 By adLocator = By.XPath("//android.widget.TextView[@text=\"Test Ad\"]");
+                driver.FindElement(adLocator);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        public bool IsCrossButtonPresent()
+        {
+            try
+            {
+                // Check for any known ad element by their text or other attributes
+                By adLocator = By.XPath("//android.widget.TextView[(@content-desc='close' or @text='×')] | //android.widget.Button");
                 driver.FindElement(adLocator);
                 return true;
             }
