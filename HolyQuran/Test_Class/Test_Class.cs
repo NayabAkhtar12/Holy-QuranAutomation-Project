@@ -107,7 +107,8 @@ namespace HolyQuran.Test_Class
         {
             ExtentTest test = Extent.CreateTest("Report");
             Names = new Names99(driver, test);
-            Names.NamesOfAllah();
+            Names.CBanner();
+            //    Names.NamesOfAllah();
         }
 
         [TestMethod]

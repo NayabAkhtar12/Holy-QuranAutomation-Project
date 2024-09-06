@@ -31,14 +31,30 @@ namespace HolyQuran.Pages
             Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
             Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
         }
+        public void CBanner()
+        {
+            //**************Code to close c banner ***********
+            try
+            {
 
+                var x = 667;
+                var y = 850;
+
+                touchAction.Tap(x, y).Perform();
+
+                // new TouchAction(driver)
+                //.Tap(PointOption.Point(x, y))
+                //.Perform();
+                Console.WriteLine("Tap performed successfully at coordinates: (" + x + ", " + y + ")");
+            }
+            catch (Exception ex)
+            {
+                HandleException("C Banner nt closeable", ex);
+            }
+        }
 
         public void NamesOfAllah()
         {
-            /////////////////// c banner
-            //  client.ClickCoordinate(100, 100, 1);
-
-
 
             try
             {
