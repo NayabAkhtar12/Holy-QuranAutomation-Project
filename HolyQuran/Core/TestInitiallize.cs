@@ -23,14 +23,31 @@ namespace HolyQuran.Core
         {
             try
             {
+                //AppiumOptions cap = new AppiumOptions();
+                //cap.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
+                //// cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Vivo Y03");
+                //cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Oppo 11");
+                ////  cap.AppPackage = "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim";
+                //cap.AddAdditionalCapability(MobileCapabilityType.Udid, "ONOZSG4H8HSGW8HY");
+                //cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "11");
+                //cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
+                //driver = new AndroidDriver<AndroidElement>(new Uri("http://192.168.100.14:4723/"), cap, TimeSpan.FromSeconds(180));
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+                //// driver.StartActivity("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim.ui.activities.OnBoardingActivity - Holy Quran");
+                //driver.StartActivity("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim.ui.activities.OnBoardingActivity");
+
+
                 AppiumOptions cap = new AppiumOptions();
                 cap.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-                // cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Vivo Y03");
-                cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Oppo 11");
-
+                cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Vivo Y03");
                 cap.AddAdditionalCapability(MobileCapabilityType.Udid, "ONOZSG4H8HSGW8HY");
-                cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "11");
+                cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "14");
                 cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
+
+                // This is the key part that will launch the app
+                cap.AddAdditionalCapability("appPackage", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim");
+                cap.AddAdditionalCapability("appActivity", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim.ui.activities.MainActivity");
+
                 driver = new AndroidDriver<AndroidElement>(new Uri("http://192.168.100.14:4723/"), cap, TimeSpan.FromSeconds(180));
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 

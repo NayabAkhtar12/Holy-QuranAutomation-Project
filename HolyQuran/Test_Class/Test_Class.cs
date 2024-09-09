@@ -7,7 +7,8 @@ namespace HolyQuran.Test_Class
     [TestClass]
     public class Test_Class : TestInitiallize
     {
-        AlQuran AlQuranSec;
+        QuranFirstSession QuranFirstSession;
+        AlQuran2ndSession AlQuran2ndSession;
         Qibla_Finder QFinder;
         DigitalTasbeeh DTasbeeh;
         MasjidFinder MFinder;
@@ -24,20 +25,18 @@ namespace HolyQuran.Test_Class
         public void HolyQuranStartUp()
         {
             ExtentTest test = Extent.CreateTest("Report");
-            AlQuranSec = new AlQuran(driver, test);
-            AlQuranSec.QuranLaunch();
-            AlQuranSec.AlQuranDownload();
+            QuranFirstSession = new QuranFirstSession(driver, test);
+            QuranFirstSession.QuranLaunch();
+            QuranFirstSession.AlQuranDownload();
         }
 
         [TestMethod]
         public void HolyQuranOperations()
         {
             ExtentTest test = Extent.CreateTest("Report");
-            AlQuranSec = new AlQuran(driver, test);
-            //AlQuranSec.QuranLaunch();
-            //AlQuranSec.AlQuranDownload();
-            AlQuranSec.PerformQuranOperations();
-            AlQuranSec.PerformSwipeOperations();
+            AlQuran2ndSession = new AlQuran2ndSession(driver, test);
+            AlQuran2ndSession.PerformQuranOperations();
+            AlQuran2ndSession.PerformSwipeOperations();
         }
 
 
@@ -107,8 +106,7 @@ namespace HolyQuran.Test_Class
         {
             ExtentTest test = Extent.CreateTest("Report");
             Names = new Names99(driver, test);
-            Names.CBanner();
-            //    Names.NamesOfAllah();
+            Names.NamesOfAllah();
         }
 
         [TestMethod]

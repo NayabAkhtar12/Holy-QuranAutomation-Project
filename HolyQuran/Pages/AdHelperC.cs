@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
 
 namespace HolyQuran.Pages
@@ -9,11 +10,14 @@ namespace HolyQuran.Pages
     {
         private readonly AppiumDriver<AndroidElement> driver;
         private readonly WebDriverWait wait;
+        TouchAction touchAction;
 
         public AdHelperC(AppiumDriver<AndroidElement> driver)
         {
             this.driver = driver;
             this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(25));
+            this.touchAction = new TouchAction(driver);
+
         }
 
         public void HandleAdCrossButton()
@@ -121,5 +125,23 @@ namespace HolyQuran.Pages
             }
 
         }
+
+        public void CBanner()
+        {
+            //**************Code to close c banner ***********
+            try
+            {
+
+                var x = 667;
+                var y = 850;
+
+                touchAction.Tap(x, y).Perform();
+                Console.WriteLine("Tap performed successfully at coordinates: (" + x + ", " + y + ")");
+            }
+            catch (NoSuchElementException)
+            {
+            }
+        }
+
     }
 }

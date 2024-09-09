@@ -7,185 +7,50 @@ using OpenQA.Selenium.Support.UI;
 
 namespace HolyQuran.Pages
 {
-    class AlQuran
+    class AlQuran2ndSession
     {
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
         private AdHelperC adHelper;
+        ReusableMethods ReusableMethods;
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
-        public AlQuran(AppiumDriver<AndroidElement> driver, ExtentTest test)
+        public AlQuran2ndSession(AppiumDriver<AndroidElement> driver, ExtentTest test)
         {
             this.driver = driver;
             this.Test = test;
-            this.adHelper = new AdHelperC(driver); // Initialize AdHelper with the correct driver type
+            this.adHelper = new AdHelperC(driver);
+            ReusableMethods = new ReusableMethods(driver, test);
         }
 
 
         public void QuranLaunch()
         {
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(Continue)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking Continue", ex);
-            }
-
-            try
-            {
-                if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
-                {
-                    adHelper.HandleAdCrossButton();
-                }
-
-                else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
-
-                {
-                    adHelper.HandleAdCloseButton();
-
-                }
-
-                else
-                {
-                    Console.WriteLine("No Ad found");
-                }
-            }
-
-            //try
-            //{
-            //    adHelper.HandleAd();
-            //}
-            catch (Exception ex)
-            {
-                HandleException("Hanling Splash Ad", ex);
-            }
-
-
-
-            try
-            {
-                LanguageSave.Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking LanguageSave", ex);
-            }
-
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(OnboardSkip)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking OnboardSkip", ex);
-            }
-
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(OnboardFinish)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking OnboardFinish", ex);
-            }
-
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(StoragePermissionAllow)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking StoragePermissionAllow", ex);
-            }
-
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(LocationPermissionAllow)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking LocationPermissionAllow", ex);
-            }
-
-
+            ReusableMethods.SplashHandling2ndsessiont();
+            Thread.Sleep(8000);
+            //Main screen
+            // HandleCBanner("ALQuran Operations");
         }
 
-        public void AlQuranDownload()
-        {
-            try
-            {
-                ALQuranMenu.Click();
-                Thread.Sleep(60000);
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking Quran Menu", ex);
-            }
-
-
-            //try
-            //{
-
-            //WebDriverWait waitReadQuran = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-
-            //waitReadQuran.Until(ExpectedConditions.ElementToBeClickable(ReadQuran));
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    HandleException("Clicking Read Quran", ex);
-            //}
-
-            //   adHelper.HandleAd();
-
-            try
-            {
-                driver.Navigate().Back();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking Back button Quran", ex);
-            }
-
-        }
         public void PerformQuranOperations()
         {
+
+            ReusableMethods.SplashHandling2ndsessiont();
+            //  Thread.Sleep(2000);
+            //Main screen
+            //  HandleCBanner("ALQuran Operations");
+
+
             try
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 ALQuranMenu.Click();
-                try
-                {
-                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
-                    {
-                        adHelper.HandleAdCrossButton();
-                    }
-
-                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
-
-                    {
-                        adHelper.HandleAdCloseButton();
-
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("No Ad found");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    HandleException("Ad Issue", ex);
-                }
-                Thread.Sleep(3000);
-
+                InterAdHandle();
+                Thread.Sleep(5000);
+                HandleCBanner("Holy Quran Main screen C.Banner");
             }
             catch (Exception ex)
             {
@@ -397,7 +262,8 @@ namespace HolyQuran.Pages
         {
             try
             {
-
+                Thread.Sleep(2000);
+                HandleCBanner("Holy Quran Surah Aal e Imran");
                 Surah2.Click();
                 try
                 {
@@ -420,7 +286,7 @@ namespace HolyQuran.Pages
 
                 catch (Exception ex)
                 {
-                    HandleException("Clicking Ad on AlFatiha", ex);
+                    HandleException("Clicking Ad on Surah 2", ex);
                 }
 
                 Swipe();
@@ -491,6 +357,54 @@ namespace HolyQuran.Pages
         {
             TouchAction act = new TouchAction(driver);
             act.LongPress(200, 180).Wait(5000).MoveTo(900, 180).Release().Perform();
+        }
+        void SplashHandling2ndsession()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(Continue)).Click();
+            }
+            catch (Exception ex)
+            {
+                HandleException("Clicking Continue", ex);
+            }
+
+            InterAdHandle();
+
+        }
+        private void HandleCBanner(string context)
+        {
+            try
+            {
+                Thread.Sleep(2000); // Optional: Adjust or remove as needed
+                adHelper.CBanner();
+                // Thread.Sleep(2000); // Optional: Adjust or remove as needed
+            }
+            catch (Exception ex)
+            {
+                HandleException($"C Banner not Found on {context}", ex);
+            }
+        }
+        void InterAdHandle()
+        {
+            try
+            {
+                if (adHelper.IsCrossButtonPresent())
+                {
+                    adHelper.HandleAdCrossButton();
+                }
+
+                else if (adHelper.IsCloseButtonPresent())
+                    adHelper.HandleAdCloseButton();
+                else
+                    Console.WriteLine("No Interstial  Ad found");
+            }
+            catch (Exception ex)
+            {
+                HandleException("99 names  inter Ad", ex);
+            }
         }
 
         public IWebElement ScrollToElementByText(string text)
