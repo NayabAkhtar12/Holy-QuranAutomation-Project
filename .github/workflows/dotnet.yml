@@ -18,15 +18,17 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    # Change directory to HolyQuran folder
-    - name: Change directory to HolyQuran
-      working-directory: HolyQuran
-
+    # Restore dependencies in the HolyQuran directory
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: HolyQuran
 
+    # Build the project in the HolyQuran directory
     - name: Build
       run: dotnet build --no-restore
+      working-directory: HolyQuran
 
+    # Run tests in the HolyQuran directory
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: HolyQuran
