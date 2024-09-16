@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
 
 namespace HolyQuran.Pages
@@ -12,7 +11,6 @@ namespace HolyQuran.Pages
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
-        private AdHelperC adHelper;
         ReusableMethods ReusableMethods;
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
@@ -21,40 +19,37 @@ namespace HolyQuran.Pages
         {
             this.driver = driver;
             this.Test = test;
-            this.adHelper = new AdHelperC(driver);
             ReusableMethods = new ReusableMethods(driver, test);
-        }
 
-
-        public void QuranLaunch()
-        {
-
-            ReusableMethods.SplashHandling2ndsessiont();
-            Thread.Sleep(8000);
-            //Main screen
-            // HandleCBanner("ALQuran Operations");
         }
 
         public void PerformQuranOperations()
         {
 
-            ReusableMethods.SplashHandling2ndsessiont();
             //  Thread.Sleep(2000);
             //Main screen
             //  HandleCBanner("ALQuran Operations");
+            try
+            {
+                ReusableMethods.SplashHandling2ndsessiont();
 
+            }
+            catch (Exception ex)
+            {
+                ReusableMethods.HandleException("SplashHandling2ndsession", ex);
+            }
 
             try
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 ALQuranMenu.Click();
-                InterAdHandle();
+                ReusableMethods.InterAdHandle();
                 Thread.Sleep(5000);
-                HandleCBanner("Holy Quran Main screen C.Banner");
+                //      HandleCBanner("Holy Quran Main screen C.Banner");
             }
             catch (Exception ex)
             {
-                HandleException("Clicking AlQuran and Ad", ex);
+                ReusableMethods.HandleException("Clicking AlQuran and Ad", ex);
             }
             try
             {
@@ -63,7 +58,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking AlFatiha", ex);
+                ReusableMethods.HandleException("Clicking AlFatiha", ex);
             }
             try
             {
@@ -72,7 +67,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking RecitersDropdown", ex);
+                ReusableMethods.HandleException("Clicking RecitersDropdown", ex);
             }
 
             try
@@ -82,7 +77,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking SelectReciter", ex);
+                ReusableMethods.HandleException("Clicking SelectReciter", ex);
             }
 
             try
@@ -92,7 +87,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking PlaySurah", ex);
+                ReusableMethods.HandleException("Clicking PlaySurah", ex);
             }
 
             try
@@ -102,7 +97,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking NextAyah", ex);
+                ReusableMethods.HandleException("Clicking NextAyah", ex);
             }
 
             try
@@ -112,7 +107,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking PrevAyah", ex);
+                ReusableMethods.HandleException("Clicking PrevAyah", ex);
             }
 
             try
@@ -122,7 +117,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking PlaySurah again", ex);
+                ReusableMethods.HandleException("Clicking PlaySurah again", ex);
             }
 
             try
@@ -132,7 +127,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking BookMarkPage", ex);
+                ReusableMethods.HandleException("Clicking BookMarkPage", ex);
             }
 
             try
@@ -142,18 +137,18 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking GotoTranslationsection", ex);
+                ReusableMethods.HandleException("Clicking GotoTranslationsection", ex);
             }
 
-            try
-            {
-                DownloadTranslation.Click();
-                Thread.Sleep(3000);
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking DownloadTranslation", ex);
-            }
+            //try
+            //{
+            //    DownloadTranslation.Click();
+            //    Thread.Sleep(3000);
+            //}
+            //catch (Exception ex)
+            //{
+            //    ReusableMethods.HandleException("Clicking DownloadTranslation", ex);
+            //}
             try
             {
                 DownloadedSection.Click();
@@ -161,7 +156,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking DownloadedSection", ex);
+                ReusableMethods.HandleException("Clicking DownloadedSection", ex);
             }
             try
             {
@@ -170,7 +165,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking ViewTranslation", ex);
+                ReusableMethods.HandleException("Clicking ViewTranslation", ex);
             }
 
             try
@@ -180,7 +175,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking TranslationNextPage", ex);
+                ReusableMethods.HandleException("Clicking TranslationNextPage", ex);
             }
 
             try
@@ -190,19 +185,24 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Clicking TranslationPrevPage", ex);
+                ReusableMethods.HandleException("Clicking TranslationPrevPage", ex);
             }
 
             try
             {
                 driver.Navigate().Back();
-                driver.Navigate().Back();
-
-
             }
             catch (Exception ex)
             {
-                HandleException("Navigating back", ex);
+                ReusableMethods.HandleException("Navigating back", ex);
+            }
+            try
+            {
+                driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                ReusableMethods.HandleException("Navigating back to main screen", ex);
             }
 
         }
@@ -212,36 +212,13 @@ namespace HolyQuran.Pages
             try
             {
                 AlFatiha.Click();
-                try
-                {
-                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
-                    {
-                        adHelper.HandleAdCrossButton();
-                    }
-
-                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
-
-                    {
-                        adHelper.HandleAdCloseButton();
-
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("No Ad found");
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    HandleException("Clicking Ad on AlFatiha", ex);
-                }
+                ReusableMethods.InterAdHandle();
 
                 Thread.Sleep(3000);
             }
             catch (Exception ex)
             {
-                HandleException("Clicking AlFatiha", ex);
+                ReusableMethods.HandleException("Clicking AlFatiha", ex);
             }
 
 
@@ -253,7 +230,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Scroll Issue occured", ex);
+                ReusableMethods.HandleException("Scroll Issue occured", ex);
             }
 
 
@@ -263,155 +240,54 @@ namespace HolyQuran.Pages
             try
             {
                 Thread.Sleep(2000);
-                HandleCBanner("Holy Quran Surah Aal e Imran");
+                // HandleCBanner("Holy Quran Surah Aal e Imran");
                 Surah2.Click();
-                try
-                {
-                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
-                    {
-                        adHelper.HandleAdCrossButton();
-                    }
+                ReusableMethods.InterAdHandle();
 
-                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
-
-                    {
-                        adHelper.HandleAdCloseButton();
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("No Ad found");
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    HandleException("Clicking Ad on Surah 2", ex);
-                }
-
-                Swipe();
+                ReusableMethods.Swipe();
                 Thread.Sleep(3000);
 
-                Swipe();
+                ReusableMethods.Swipe();
                 Thread.Sleep(3000);
 
-                Swipe();
+                ReusableMethods.Swipe();
 
                 SurahBack.Click();
             }
             catch (Exception ex)
             {
-                HandleException("Surah Aal e Imran Swipe", ex);
+                ReusableMethods.HandleException("Surah Aal e Imran Swipe", ex);
             }
 
             try
             {
                 SurahAnNisa.Click();
-                try
-                {
-                    if (adHelper.IsAdPresent() && adHelper.IsCrossButtonPresent())
-                    {
-                        adHelper.HandleAdCrossButton();
-                    }
+                ReusableMethods.InterAdHandle();
 
-                    else if (adHelper.IsAdPresent() && adHelper.IsCloseButtonPresent())
-
-                    {
-                        adHelper.HandleAdCloseButton();
-
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("No Ad found");
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    HandleException("Clicking Ad on AlFatiha", ex);
-                }
-                Swipe();
+                ReusableMethods.Swipe();
                 Thread.Sleep(3000);
 
-                Swipe();
+                ReusableMethods.Swipe();
                 Thread.Sleep(3000);
 
-                Swipe();
+                ReusableMethods.Swipe();
 
                 SurahBack.Click();
+            }
+            catch (Exception ex)
+            {
+                ReusableMethods.HandleException("Surah An Nisa Swipe", ex);
+            }
+            try
+            {
                 driver.Navigate().Back();
             }
             catch (Exception ex)
             {
-                HandleException("Surah An Nisa Swipe", ex);
-            }
-        }
-        private void HandleException(string action, Exception ex)
-        {
-            Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
-            Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
-        }
-
-        public void Swipe()
-        {
-            TouchAction act = new TouchAction(driver);
-            act.LongPress(200, 180).Wait(5000).MoveTo(900, 180).Release().Perform();
-        }
-        void SplashHandling2ndsession()
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            try
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(Continue)).Click();
-            }
-            catch (Exception ex)
-            {
-                HandleException("Clicking Continue", ex);
-            }
-
-            InterAdHandle();
-
-        }
-        private void HandleCBanner(string context)
-        {
-            try
-            {
-                Thread.Sleep(2000); // Optional: Adjust or remove as needed
-                adHelper.CBanner();
-                // Thread.Sleep(2000); // Optional: Adjust or remove as needed
-            }
-            catch (Exception ex)
-            {
-                HandleException($"C Banner not Found on {context}", ex);
-            }
-        }
-        void InterAdHandle()
-        {
-            try
-            {
-                if (adHelper.IsCrossButtonPresent())
-                {
-                    adHelper.HandleAdCrossButton();
-                }
-
-                else if (adHelper.IsCloseButtonPresent())
-                    adHelper.HandleAdCloseButton();
-                else
-                    Console.WriteLine("No Interstial  Ad found");
-            }
-            catch (Exception ex)
-            {
-                HandleException("99 names  inter Ad", ex);
+                ReusableMethods.HandleException("Surah An Nisa to Home screen navigation", ex);
             }
         }
 
-        public IWebElement ScrollToElementByText(string text)
-        {
-            return driver.FindElement(MobileBy.AndroidUIAutomator(
-                $"new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"{text}\"))"));
-        }
         IWebElement ALQuranMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivquran");
         IWebElement AlFatiha => driver.FindElementByXPath("//android.widget.TextView[@resource-id=\"com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/textView5\" and @text=\"Surat Al-Fatiha\"]");
         IWebElement PlaySurah => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/play");

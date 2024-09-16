@@ -53,7 +53,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Timer or close button not found.");
+                Console.WriteLine("Timer or close button not found.", ex);
             }
         }
 

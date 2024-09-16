@@ -11,7 +11,9 @@ namespace HolyQuran.Pages
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
-        private AdHelper adHelper;
+        ReusableMethods ReusableMethods;
+
+
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
@@ -19,14 +21,7 @@ namespace HolyQuran.Pages
         {
             this.driver = driver;
             this.Test = test;
-            this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
-        }
-
-
-        private void HandleException(string action, Exception ex)
-        {
-            Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
-            Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
+            ReusableMethods = new ReusableMethods(driver, test);
         }
 
 
@@ -34,38 +29,34 @@ namespace HolyQuran.Pages
         {
             try
             {
-                hajjUmrahMenu.Click();
                 // Thread.Sleep(3000); // Assuming a delay after click for the view to load
                 try
                 {
-                    if (adHelper.IsAdPresent())
-                    {
-                        adHelper.HandleAd();
-                    }
+                    hajjUmrahMenu.Click();
+                    ReusableMethods.InterAdHandle();
+
                 }
                 catch (Exception ex)
                 {
-                    HandleException("Ad Failed", ex);
+                    ReusableMethods.HandleException("Ad Failed", ex);
                 }
             }
             catch (Exception ex)
             {
-                HandleException("Hajj and Umrah", ex);
+                ReusableMethods.HandleException("Hajj and Umrah", ex);
             }
 
             try
             {
-                HajjGuideMenu.Click();
                 try
                 {
-                    if (adHelper.IsAdPresent())
-                    {
-                        adHelper.HandleAd();
-                    }
+                    HajjGuideMenu.Click();
+                    ReusableMethods.InterAdHandle();
+
                 }
                 catch (Exception ex)
                 {
-                    HandleException("Hajj Guide Menu Ad Failed", ex);
+                    ReusableMethods.HandleException("Hajj Guide Menu Ad Failed", ex);
                 }
                 HajjGuideDay1.Click();
                 Thread.Sleep(1000);
@@ -73,7 +64,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Hajj Day 1", ex);
+                ReusableMethods.HandleException("Hajj Day 1", ex);
             }
 
             try
@@ -84,7 +75,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Hajj Day 2", ex);
+                ReusableMethods.HandleException("Hajj Day 2", ex);
             }
 
             try
@@ -97,7 +88,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Hajj Day 3", ex);
+                ReusableMethods.HandleException("Hajj Day 3", ex);
             }
 
             try
@@ -108,7 +99,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Hajj Day 4", ex);
+                ReusableMethods.HandleException("Hajj Day 4", ex);
             }
 
             try
@@ -120,7 +111,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Hajj Day 5", ex);
+                ReusableMethods.HandleException("Hajj Day 5", ex);
             }
 
         }
@@ -129,17 +120,15 @@ namespace HolyQuran.Pages
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             try
             {
-                UmrahGuideMenu.Click();
                 try
                 {
-                    if (adHelper.IsAdPresent())
-                    {
-                        adHelper.HandleAd();
-                    }
+                    UmrahGuideMenu.Click();
+                    ReusableMethods.InterAdHandle();
+
                 }
                 catch (Exception ex)
                 {
-                    HandleException("Ad Failed umrah", ex);
+                    ReusableMethods.HandleException("Ad Failed umrah", ex);
                 }
                 wait.Until(ExpectedConditions.ElementToBeClickable(UmrahIhram)).Click();
                 Thread.Sleep(1000);
@@ -147,7 +136,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Umrah Ihram", ex);
+                ReusableMethods.HandleException("Umrah Ihram", ex);
             }
             try
             {
@@ -157,7 +146,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Umrah Tawaf", ex);
+                ReusableMethods.HandleException("Umrah Tawaf", ex);
             }
             try
             {
@@ -167,7 +156,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Umrah Sa'ee", ex);
+                ReusableMethods.HandleException("Umrah Sa'ee", ex);
             }
             try
             {
@@ -180,7 +169,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Umrah Shaving", ex);
+                ReusableMethods.HandleException("Umrah Shaving", ex);
             }
         }
 
@@ -205,7 +194,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Kaaba/Mina Location Makkah ", ex);
+                ReusableMethods.HandleException("Kaaba/Mina Location Makkah ", ex);
             }
         }
         public void FamousPlacesofMedina()
@@ -234,7 +223,7 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Medina Places", ex);
+                ReusableMethods.HandleException("Medina Places", ex);
             }
             driver.Navigate().Back();
 
@@ -242,11 +231,6 @@ namespace HolyQuran.Pages
         }
 
 
-        public IWebElement ScrollToElementByText(string text)
-        {
-            return driver.FindElement(MobileBy.AndroidUIAutomator(
-                $"new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"{text}\"))"));
-        }
 
         IWebElement hajjUmrahMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivnameshusna");
         IWebElement HajjGuideMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivhajj");

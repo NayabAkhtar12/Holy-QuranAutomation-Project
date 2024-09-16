@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.MultiTouch;
 
 namespace HolyQuran.Pages
 {
@@ -11,7 +10,8 @@ namespace HolyQuran.Pages
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
-        private AdHelper adHelper;
+        ReusableMethods ReusableMethods;
+
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
         //Constructor
@@ -19,32 +19,25 @@ namespace HolyQuran.Pages
         {
             this.driver = driver;
             this.Test = test;
-            this.adHelper = new AdHelper(driver); // Initialize AdHelper with the correct driver type
+            ReusableMethods = new ReusableMethods(driver, test);
         }
 
 
-        private void HandleException(string action, Exception ex)
-        {
-            Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
-            Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
-        }
 
         public void DigitalTasbeehMethod()
         {
             try
             {
-                digitalTasbeehMenu.Click();
                 Thread.Sleep(3000);
                 try
                 {
-                    if (adHelper.IsAdPresent())
-                    {
-                        adHelper.HandleAd();
-                    }
+                    digitalTasbeehMenu.Click();
+                    ReusableMethods.InterAdHandle();
+
                 }
                 catch (Exception ex)
                 {
-                    HandleException("Qibla Finder Menu", ex);
+                    ReusableMethods.HandleException("Qibla Finder Menu", ex);
                 }
 
                 EditZikrForCount.Click();
@@ -55,21 +48,10 @@ namespace HolyQuran.Pages
             }
             catch (Exception ex)
             {
-                HandleException("Digital Tasbeeh", ex);
+                ReusableMethods.HandleException("Digital Tasbeeh", ex);
             }
         }
 
-        public void Swipe()
-        {
-            TouchAction act = new TouchAction(driver);
-            act.LongPress(200, 180).Wait(5000).MoveTo(900, 180).Release().Perform();
-        }
-
-        public IWebElement ScrollToElementByText(string text)
-        {
-            return driver.FindElement(MobileBy.AndroidUIAutomator(
-                $"new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"{text}\"))"));
-        }
 
         IWebElement digitalTasbeehMenu => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivtasbeeh");
         IWebElement EditZikrForCount => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/ivChangeTasbeeh");

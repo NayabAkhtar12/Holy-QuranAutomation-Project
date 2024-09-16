@@ -39,20 +39,15 @@ namespace HolyQuran.Pages
             InterAdHandle();
 
         }
-        private void HandleCBanner(string context)
+
+        public void HandleException(string action, Exception ex)
         {
-            try
-            {
-                Thread.Sleep(2000); // Optional: Adjust or remove as needed
-                adHelper.CBanner();
-                // Thread.Sleep(2000); // Optional: Adjust or remove as needed
-            }
-            catch (Exception ex)
-            {
-                HandleException($"C Banner not Found on {context}", ex);
-            }
+            Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
+            Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
         }
-        void InterAdHandle()
+
+
+        public void InterAdHandle()
         {
             try
             {
@@ -72,11 +67,6 @@ namespace HolyQuran.Pages
             }
         }
 
-        private void HandleException(string action, Exception ex)
-        {
-            Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
-            Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
-        }
 
         public void Swipe()
         {
@@ -89,6 +79,22 @@ namespace HolyQuran.Pages
             return driver.FindElement(MobileBy.AndroidUIAutomator(
                 $"new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"{text}\"))"));
         }
+
+        public void HandleCBanner(string context)
+        {
+            try
+            {
+                Thread.Sleep(2000); // Optional: Adjust or remove as needed
+                adHelper.CBanner();
+                // Thread.Sleep(2000); // Optional: Adjust or remove as needed
+            }
+            catch (Exception ex)
+            {
+                HandleException($"C Banner not Found on {context}", ex);
+            }
+        }
+
+
         IWebElement Continue => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/StartButton");
     }
 }
