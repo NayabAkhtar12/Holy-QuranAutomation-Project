@@ -31,7 +31,7 @@ namespace HolyQuran.Pages
             //  HandleCBanner("ALQuran Operations");
             try
             {
-                ReusableMethods.SplashHandling2ndsessiont();
+                //ReusableMethods.SplashHandling2ndsessiont();
 
             }
             catch (Exception ex)
@@ -39,8 +39,10 @@ namespace HolyQuran.Pages
                 ReusableMethods.HandleException("SplashHandling2ndsession", ex);
             }
 
+
             try
             {
+                ReusableMethods.ScrollToElementByText("AL-Quran");
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 ALQuranMenu.Click();
                 ReusableMethods.InterAdHandle();

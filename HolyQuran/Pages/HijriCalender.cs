@@ -31,6 +31,7 @@ namespace HolyQuran.Pages
                 Thread.Sleep(3000);
                 try
                 {
+                    ReusableMethods.ScrollToElementByText("Hijri Calender");
                     hijriCalendarMenu.Click();
 
                     ReusableMethods.InterAdHandle();

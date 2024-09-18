@@ -25,12 +25,14 @@ namespace HolyQuran.Pages
 
         public void AzkarMethod()
         {
+
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             try
             {
 
                 try
                 {
+                    ReusableMethods.ScrollToElementByText("Azkar");
                     azkarMenu.Click();
                     ReusableMethods.InterAdHandle();
 

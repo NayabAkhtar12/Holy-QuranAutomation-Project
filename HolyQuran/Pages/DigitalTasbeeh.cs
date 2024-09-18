@@ -31,6 +31,7 @@ namespace HolyQuran.Pages
                 Thread.Sleep(3000);
                 try
                 {
+                    ReusableMethods.ScrollToElementByText("Digital Tasbeeh");
                     digitalTasbeehMenu.Click();
                     ReusableMethods.InterAdHandle();
 

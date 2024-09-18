@@ -14,7 +14,7 @@ namespace HolyQuran.Pages
         private ExtentTest Test;
         ExtentReports Extent = new ExtentReports();
         TouchAction touchAction;
-        ReusableMethods ReusableMethods;
+        ReusableMethodsT ReusableMethods;
 
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
@@ -24,7 +24,7 @@ namespace HolyQuran.Pages
             this.driver = driver;
             this.Test = test;
             this.touchAction = new TouchAction(driver);
-            ReusableMethods = new ReusableMethods(driver, test);
+            ReusableMethods = new ReusableMethodsT(driver, test);
         }
 
 
@@ -33,7 +33,8 @@ namespace HolyQuran.Pages
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            ReusableMethods.SplashHandling2ndsessiont();
+            //ReusableMethods.SplashHandling2ndsessiont();
+
             //    Thread.Sleep(8000);
 
             //Main screen
@@ -44,8 +45,9 @@ namespace HolyQuran.Pages
             //Names
             try
             {
+                ReusableMethods.ScrollToElementByText("99 Names");
                 Namesnine.Click();
-                ReusableMethods.InterAdHandle();
+                ReusableMethods.HandleInterstitialAd();
 
             }
             catch (Exception ex)
@@ -58,13 +60,14 @@ namespace HolyQuran.Pages
             // 99 Names Read
             try
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(5000);
+                wait.Until(ExpectedConditions.ElementToBeClickable(ReadNamesAllah));  // Ensure the button is clickable
                 ReadNamesAllah.Click();
-                ReusableMethods.InterAdHandle();
+                ReusableMethods.HandleInterstitialAd();
                 Thread.Sleep(2000);
-                driver.Navigate().Back();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("backButton")));  // Wait for the back button to appear
             }
-            catch (Exception ex)
+            catch (NoSuchElementException ex)
             {
                 ReusableMethods.HandleException("99 Names Allah Read Issue", ex);
             }

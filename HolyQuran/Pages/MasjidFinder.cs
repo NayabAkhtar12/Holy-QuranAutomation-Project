@@ -33,6 +33,7 @@ namespace HolyQuran.Pages
                 //  ViewList.Click();
                 try
                 {
+                    ReusableMethods.ScrollToElementByText("Masjid Finder");
                     masjidFinderMenu.Click();
                     ReusableMethods.InterAdHandle();
 

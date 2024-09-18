@@ -21,7 +21,7 @@ namespace HolyQuran.Test_Class
 
         PremiumandMenu Premiumand;
 
-        //   [TestMethod]
+        //     [TestMethod]
         public void HolyQuranStartUp()
         {
             ExtentTest test = Extent.CreateTest("Report");
@@ -30,7 +30,7 @@ namespace HolyQuran.Test_Class
             QuranFirstSession.AlQuranDownload();
         }
 
-        //  [TestMethod]
+        [TestMethod]
         public void HolyQuran2ndSession()
         {
             ExtentTest test = Extent.CreateTest("Report");

@@ -32,6 +32,7 @@ namespace HolyQuran.Pages
 
                 try
                 {
+                    ReusableMethods.ScrollToElementByText("Prayer Times");
                     prayerTimesMenu.Click();
 
                     ReusableMethods.InterAdHandle();
