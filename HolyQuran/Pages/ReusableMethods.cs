@@ -40,32 +40,31 @@ namespace HolyQuran.Pages
 
         }
 
-        public void HandleException(string action, Exception ex)
+        //public void HandleException1(string action, Exception ex)
+        //{
+        //    Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
+        //    Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
+        //}
+
+
+        public void HandleException(string actionName, Exception ex)
         {
-            Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
-            Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
+            // Log the error message
+            Test.Log(Status.Fail, $"Test failed during: {actionName}. Exception: {ex.Message}");
+
+            // Capture a screenshot
+            Screenshot screenshot = driver.GetScreenshot();
+            string filePath = @"D:\Reports\SS\screenshot.png";
+            screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
+            Console.WriteLine($"Screenshot saved to: {filePath}");
+
+
+            // Optionally, throw the exception to stop the test execution
+            throw ex;
         }
 
 
-        public void InterAdHandle()
-        {
-            try
-            {
-                if (adHelper.IsCrossButtonPresent())
-                {
-                    adHelper.HandleAdCrossButton();
-                }
 
-                else if (adHelper.IsCloseButtonPresent())
-                    adHelper.HandleAdCloseButton();
-                else
-                    Console.WriteLine("No Interstial  Ad found");
-            }
-            catch (Exception ex)
-            {
-                HandleException("99 names  inter Ad", ex);
-            }
-        }
 
 
         public void Swipe()
@@ -92,6 +91,95 @@ namespace HolyQuran.Pages
             {
                 HandleException($"C Banner not Found on {context}", ex);
             }
+        }
+
+        public void InterAdHandleBackup()
+        {
+            try
+            {
+                if (adHelper.IsCrossButtonPresent())
+                {
+                    adHelper.HandleAdCrossButton();
+                }
+
+                else if (adHelper.IsCloseButtonPresent())
+                    adHelper.HandleAdCloseButton();
+                else
+                    Console.WriteLine("No Interstial  Ad found");
+            }
+            catch (Exception ex)
+            {
+                HandleException("99 names  inter Ad", ex);
+            }
+        }
+        //New method for live ads
+        public void InterAdHandle()
+        {
+            Thread.Sleep(20000);
+            try
+            {
+                By handleAdButton = By.XPath(
+            "//android.widget.Button | " +
+            "//android.widget.ImageView[@content-desc='Ad closed'] | " +
+            "//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ']"
+        );
+
+                // By closeButton = By.XPath("//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ' ]");
+                // By crossButton = By.XPath("//android.widget.Button | //android.widget.ImageView[@content-desc='Ad closed']");
+                //    By handleAdButton = By.XPath("//android.widget.Button | //android.widget.ImageView[@content-desc='Ad closed'] | //android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ' ]");
+
+                IWebElement adButton = null;
+
+                // Check if any of the locators are present
+                if (IsElementPresent(handleAdButton))
+                {
+                    adButton = driver.FindElement(handleAdButton);
+                    if (adButton != null)
+                    {
+                        adButton.Click();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Interstitial Ad found");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No ad close button found");
+                }
+            }
+            catch (NoSuchElementException)
+            {
+                Console.WriteLine("No ad close button found");
+            }
+            catch (Exception ex)
+            {
+                HandleException("inter Ad", ex);
+            }
+        }
+
+        private bool IsElementPresent(By locator)
+        {
+            try
+            {
+                return driver.FindElements(locator).Count > 0;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        public void LogTestFailure(Exception ex)
+        {
+            // Log the failure using Extent Reports
+            Test.Log(Status.Fail, $"Test failed due to: {ex.Message}");
+
+            // Optionally log the stack trace for more details
+            Test.Log(Status.Fail, $"Stack Trace: {ex.StackTrace}");
+
+            // You can also add a screenshot or other debug info if needed
+            // For example: AttachScreenshot();
         }
 
 

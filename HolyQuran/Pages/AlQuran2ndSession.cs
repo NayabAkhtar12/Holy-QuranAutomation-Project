@@ -10,7 +10,6 @@ namespace HolyQuran.Pages
     {
         private AppiumDriver<AndroidElement> driver;
         private ExtentTest Test;
-        ExtentReports Extent = new ExtentReports();
         ReusableMethods ReusableMethods;
         //private WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
@@ -31,7 +30,7 @@ namespace HolyQuran.Pages
             //  HandleCBanner("ALQuran Operations");
             try
             {
-                //ReusableMethods.SplashHandling2ndsessiont();
+                // ReusableMethods.SplashHandling2ndsessiont();
 
             }
             catch (Exception ex)
@@ -42,7 +41,7 @@ namespace HolyQuran.Pages
 
             try
             {
-                ReusableMethods.ScrollToElementByText("AL-Quran");
+                // ReusableMethods.ScrollToElementByText("AL-Quran");
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 ALQuranMenu.Click();
                 ReusableMethods.InterAdHandle();
@@ -56,7 +55,7 @@ namespace HolyQuran.Pages
             try
             {
                 AlFatiha.Click();
-                Thread.Sleep(3000);
+                ReusableMethods.InterAdHandle();
             }
             catch (Exception ex)
             {
@@ -114,7 +113,7 @@ namespace HolyQuran.Pages
 
             try
             {
-                PlaySurah.Click(); // Assuming PlaySurah needs to be clicked again after NextAyah and PrevAyah
+                //PlaySurah.Click(); // Assuming PlaySurah needs to be clicked again after NextAyah and PrevAyah
                 Thread.Sleep(3000);
             }
             catch (Exception ex)
@@ -243,7 +242,15 @@ namespace HolyQuran.Pages
             {
                 Thread.Sleep(2000);
                 // HandleCBanner("Holy Quran Surah Aal e Imran");
-                Surah2.Click();
+                try
+                {
+                    Surah2.Click();
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Surah Aal E Imran", ex);
+                }
+
                 ReusableMethods.InterAdHandle();
 
                 ReusableMethods.Swipe();
@@ -253,8 +260,14 @@ namespace HolyQuran.Pages
                 Thread.Sleep(3000);
 
                 ReusableMethods.Swipe();
-
-                SurahBack.Click();
+                try
+                {
+                    SurahBack.Click();
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Surah An Nisa to Home screen navigation", ex);
+                }
             }
             catch (Exception ex)
             {

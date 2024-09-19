@@ -24,95 +24,99 @@ namespace HolyQuran.Test_Class
         //     [TestMethod]
         public void HolyQuranStartUp()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("HolyQuranStartUp Report");
             QuranFirstSession = new QuranFirstSession(driver, test);
             QuranFirstSession.QuranLaunch();
             QuranFirstSession.AlQuranDownload();
         }
 
-        [TestMethod]
-        public void HolyQuran2ndSession()
+
+
+        // [Test, Order(1)]
+        [TestMethod, TestCategory("Order")]
+        public void TC01_HolyQuran2ndSession()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            System.Diagnostics.Trace.WriteLine("Test1");
+            ExtentTest test = Extent.CreateTest("TC01_HolyQuran2ndSession Report");
             AlQuran2ndSession = new AlQuran2ndSession(driver, test);
             AlQuran2ndSession.PerformQuranOperations();
             AlQuran2ndSession.PerformSwipeOperations();
         }
 
 
-        [TestMethod]
-        public void QiblaFinderTest()
+        [TestMethod, TestCategory("Order")]
+        public void TC02_QiblaFinderTest()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("QiblaFinderTest Report");
             QFinder = new Qibla_Finder(driver, test);
             QFinder.QiblaFinder();
         }
 
-        [TestMethod]
-        public void DigitalTasbeehTest()
+        [TestMethod, TestCategory("Order")]
+        public void TC03_DigitalTasbeehTest()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("DigitalTasbeehTest Report");
             DTasbeeh = new DigitalTasbeeh(driver, test);
             DTasbeeh.DigitalTasbeehMethod();
         }
 
 
-        [TestMethod]
-        public void MasjidFinderTest()
+        [TestMethod, TestCategory("Order")]
+        public void TC04_MasjidFinderTest()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("MasjidFinderTest Report");
             MFinder = new MasjidFinder(driver, test);
             MFinder.MasjidFinderMethod();
         }
 
 
-        [TestMethod]
-        public void PrayerTimesTest()
+        [TestMethod, TestCategory("Order")]
+        public void TC05_PrayerTimesTest()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("PrayerTimesTest Report");
             PTimes = new PrayerTimes(driver, test);
             PTimes.PrayerTimesMethod();
         }
 
-        [TestMethod]
-        public void HijriCalenderTest()
+        [TestMethod, TestCategory("Order")]
+        public void TC06_HijriCalenderTest()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("HijriCalenderTest Report");
             HijCal = new HijriCalender(driver, test);
             HijCal.HijriCalendar();
         }
 
 
 
-        [TestMethod]
-        public void HajjandUmrahSection()
+        [TestMethod, TestCategory("Order")]
+        public void TC07_HajjandUmrahSection()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("HajjandUmrahSection Report");
             HajjUmrah = new HajjUmrahSection(driver, test);
             HajjUmrah.HajjGuide();
             HajjUmrah.UmrahGuide();
         }
 
-        [TestMethod]
-        public void AzkarSection()
+        [TestMethod, TestCategory("Order")]
+        public void TC08_AzkarSection()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("AzkarSection Report");
             Azkar = new Azkar(driver, test);
             Azkar.AzkarMethod();
         }
 
-        [TestMethod]
-        public void NamesTest()
+        [TestMethod, TestCategory("Order")]
+        public void TC09_NamesTest()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("99 Names Report");
             Names = new Names99(driver, test);
             Names.NamesOfAllah();
         }
 
-        [TestMethod]
-        public void PremiumandMenu()
+        [TestMethod, TestCategory("Order")]
+        public void TC10_PremiumandMenu()
         {
-            ExtentTest test = Extent.CreateTest("Report");
+            ExtentTest test = Extent.CreateTest("PremiumandMenu Report");
             Premiumand = new PremiumandMenu(driver, test);
             Premiumand.PremiumandMenuMethod();
         }

@@ -40,7 +40,7 @@ namespace HolyQuran.Pages
                 }
                 catch (Exception ex)
                 {
-                    ReusableMethods.HandleException("Qibla Finder Menu", ex);
+                    ReusableMethods.HandleException("Prayer Times Menu", ex);
                 }
                 PrayerTimeNotification.Click();
                 PrayerTimeNotification.Click();

@@ -22,7 +22,69 @@ namespace HolyQuran.Pages
             this.Test = test;
             this.adHelper = new AdHelperC(driver); // Initialize AdHelper with the correct driver type
         }
+        private string CaptureScreenshot(string fileName)
+        {
+            try
+            {
+                Screenshot screenshot = driver.GetScreenshot();
+                string filePath = Path.Combine("Screenshots", $"{fileName}.png");
+                screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
+                return filePath;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if screenshot capture fails
+                Test.Log(Status.Warning, $"Screenshot capture failed: {ex.Message}");
+                return null;
+            }
+        }
+        public void HandleException(string actionName, Exception ex)
+        {
+            // Log the error message
+            Test.Log(Status.Fail, $"Test failed during: {actionName}. Exception: {ex.Message}");
 
+            // Capture the screenshot
+            string screenshotPath = CaptureScreenshot(actionName.Replace(" ", "_"));
+
+            if (screenshotPath != null)
+            {
+                // Log that a screenshot was taken and add it to the Extent Report
+                Test.Log(Status.Info, "Screenshot captured for the failed step.");
+                Test.AddScreenCaptureFromPath(screenshotPath, "Failure Screenshot");
+            }
+            else
+            {
+                // Log if the screenshot was not captured due to an error
+                Test.Log(Status.Warning, "Screenshot could not be captured.");
+            }
+
+            // Optionally, re-throw the exception to fail the test
+            throw ex;
+        }
+
+        public void HandleExceptiontt(string actionName, Exception ex)
+        {
+            // Log the error message
+            Test.Log(Status.Fail, $"Test failed during: {actionName}. Exception: {ex.Message}");
+
+            // Capture the screenshot
+            string screenshotPath = CaptureScreenshot(actionName.Replace(" ", "_"));
+
+            if (screenshotPath != null)
+            {
+                // Log that a screenshot was taken and add it to the Extent Report
+                Test.Log(Status.Info, "Screenshot captured for the failed step.");
+                Test.AddScreenCaptureFromPath(screenshotPath, "Failure Screenshot");
+            }
+            else
+            {
+                // Log if the screenshot was not captured due to an error
+                Test.Log(Status.Warning, "Screenshot could not be captured.");
+            }
+
+            // Optionally, re-throw the exception to fail the test
+            throw ex;
+        }
         public void SplashHandling2ndsessiont()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -40,11 +102,11 @@ namespace HolyQuran.Pages
 
         }
 
-        public void HandleException(string action, Exception ex)
-        {
-            Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
-            Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
-        }
+        //public void HandleException(string action, Exception ex)
+        //{
+        //    Console.WriteLine($"Exception occurred during {action}: {ex.Message}");
+        //    Test.Log(Status.Fail, $"Test failed during {action} due to: {ex.Message}");
+        //}
 
 
         public void Swipe()

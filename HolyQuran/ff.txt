@@ -1,0 +1,57 @@
+Pro screen:
+Pro screen not localized
+Phone cleaner text in Details
+
+Download screen :
+Shown 2 percentage
+White button with no text visible
+
+Banner Ad is not shown on Read Page screen
+
+500 buy :
+
+
+
+
+Is m app open splash pr show hota ha phr instantly move kr jata ha t splash pr banner ad view b nhe ho pa raha ha
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  try
+  {
+      if closebutton  || crossbutton=  )
+      {
+         HandleButton.click;
+      }
+
+      else
+          Console.WriteLine("No Interstial  Ad found");
+  }
+  catch (Exception ex)
+  {
+      HandleException("99 names  inter Ad", ex);
+  }
+
+
+            By closebutton = By.XPath("//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ' ]");
+                By crossbutton= By.XPath("//android.widget.Button | //android.widget.ImageView[@content-desc='Ad closed']");
+                By HandleAdButton= By.XPath("//android.widget.Button | //android.widget.ImageView[@content-desc='Ad closed'] | //android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ' ]");
+
