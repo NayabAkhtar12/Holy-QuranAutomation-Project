@@ -277,9 +277,24 @@ namespace HolyQuran.Pages
 
             try
             {
-                driver.Navigate().Back();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
 
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
 
             }
             catch (Exception ex)
@@ -334,7 +349,15 @@ namespace HolyQuran.Pages
 
                 ReusableMethods.Swipe();
 
-                SurahBack.Click();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -355,7 +378,15 @@ namespace HolyQuran.Pages
                 ReusableMethods.Swipe();
 
                 SurahBack.Click();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {

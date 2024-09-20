@@ -74,7 +74,15 @@ namespace HolyQuran.Pages
             {
                 ReusableMethods.ScrollToElementByText("Praise is to Allah Who gave strength to my body, He returned my soul to me and permitted me to remember Him.");
                 Thread.Sleep(3000);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
 
             catch (Exception ex)
@@ -123,7 +131,15 @@ namespace HolyQuran.Pages
             try
             {
                 ViewBookmark.Click();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {

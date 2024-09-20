@@ -287,7 +287,14 @@ namespace HolyQuran.Pages
 
                 ReusableMethods.Swipe();
 
-                SurahBack.Click();
+                try
+                {
+                    SurahBack.Click();
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Surah An Nisa to Home screen navigation", ex);
+                }
             }
             catch (Exception ex)
             {

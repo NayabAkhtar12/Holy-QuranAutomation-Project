@@ -46,24 +46,46 @@ namespace HolyQuran.Pages
             catch (Exception ex)
             {
                 ReusableMethods.HandleException("99 Names", ex);
-                ReusableMethods.LogTestFailure(ex);
-
             }
 
             // 99 Names Read
             try
             {
-                Thread.Sleep(5000);
-                wait.Until(ExpectedConditions.ElementToBeClickable(ReadNamesAllah));  // Ensure the button is clickable
-                ReadNamesAllah.Click();
-                ReusableMethods.InterAdHandle();
-                Thread.Sleep(2000);
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("backButton")));  // Wait for the back button to appear
+                //Thread.Sleep(5000);
+                try
+                {
+                    wait.Until(ExpectedConditions.ElementToBeClickable(ReadNamesAllah));  // Ensure the button is clickable
+                    ReadNamesAllah.Click();
+                    Console.WriteLine("Successfully clicked on 'ReadNamesAllah' button.");
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Clicking ReadNamesAllah button", ex);
+                }
+
+                try
+                {
+                    ReusableMethods.InterAdHandle();  // Handle interstitial ad
+                    Console.WriteLine("Read names Interstitial ad handled.");
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Handling interstitial ad", ex);
+                }
+
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("  BackButton Navigation ", ex);
+                }
             }
             catch (NoSuchElementException ex)
             {
                 ReusableMethods.HandleException("99 Names Allah Read Issue", ex);
-                ReusableMethods.LogTestFailure(ex);
 
             }
 
@@ -72,10 +94,6 @@ namespace HolyQuran.Pages
             {
                 ListenNamesAllah.Click();
                 ReusableMethods.InterAdHandle();
-                //C Banner close on Listen Names
-                // Thread.Sleep(2000);
-                //  HandleCBanner("Names Allah  Listen");
-
 
                 //Rest of action to perform on Names Listen screen
                 try
@@ -83,7 +101,15 @@ namespace HolyQuran.Pages
                     Nameplay.Click();
                     Thread.Sleep(6000);
                     Nameplay.Click();
-                    driver.Navigate().Back();
+                    try
+                    {
+                        driver.Navigate().Back();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ReusableMethods.HandleException("Backbutton", ex);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -102,7 +128,16 @@ namespace HolyQuran.Pages
             {
                 ReadNamesHusna.Click();
                 ReusableMethods.InterAdHandle();
-                driver.Navigate().Back();
+
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
 
             }
             catch (Exception ex)
@@ -124,7 +159,15 @@ namespace HolyQuran.Pages
                     Nameplay.Click();
                     Thread.Sleep(6000);
                     Nameplay.Click();
-                    driver.Navigate().Back();
+                    try
+                    {
+                        driver.Navigate().Back();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ReusableMethods.HandleException("Backbutton", ex);
+                    }
                 }
 
                 catch (Exception ex)
@@ -137,8 +180,16 @@ namespace HolyQuran.Pages
             {
                 ReusableMethods.HandleException("99 Names  Issue", ex);
             }
+            try
+            {
+                driver.Navigate().Back();
 
-            driver.Navigate().Back();
+            }
+            catch (Exception ex)
+            {
+                ReusableMethods.HandleException("99 Names  Issue", ex);
+            }
+
         }
 
 

@@ -47,7 +47,15 @@ namespace HolyQuran.Pages
                 Date.Click();
                 NextMonth.Click();
                 Date.Click();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {

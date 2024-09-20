@@ -52,7 +52,17 @@ namespace HolyQuran.Pages
             try
             {
                 Theme2.Click();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+
+
             }
             catch (Exception ex)
             {

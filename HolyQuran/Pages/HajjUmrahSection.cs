@@ -61,7 +61,15 @@ namespace HolyQuran.Pages
                 }
                 HajjGuideDay1.Click();
                 Thread.Sleep(1000);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("  BackButton Navigation ", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -72,7 +80,15 @@ namespace HolyQuran.Pages
             {
                 HajjGuideDay2.Click();
                 Thread.Sleep(1000); // Assuming a delay after click for the view to load
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -83,8 +99,15 @@ namespace HolyQuran.Pages
             {
                 HajjGuideDay3.Click();
                 Thread.Sleep(1000);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
 
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
 
             }
             catch (Exception ex)
@@ -96,7 +119,15 @@ namespace HolyQuran.Pages
             {
                 HajjGuideDay4.Click();
                 Thread.Sleep(1000); // Assuming a delay after click for the view to load
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -107,8 +138,24 @@ namespace HolyQuran.Pages
             {
                 HajjGuideDay5.Click();
                 Thread.Sleep(2000); // Assuming a delay after click for the view to load
-                driver.Navigate().Back();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -133,7 +180,15 @@ namespace HolyQuran.Pages
                 }
                 wait.Until(ExpectedConditions.ElementToBeClickable(UmrahIhram)).Click();
                 Thread.Sleep(1000);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -143,7 +198,15 @@ namespace HolyQuran.Pages
             {
                 wait.Until(ExpectedConditions.ElementToBeClickable(UmrahTawaf)).Click();
                 Thread.Sleep(2000);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -153,7 +216,15 @@ namespace HolyQuran.Pages
             {
                 UmrahSAEE.Click();
                 Thread.Sleep(1000);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -163,10 +234,33 @@ namespace HolyQuran.Pages
             {
                 UmrahShaving.Click();
                 Thread.Sleep(1000);
-                driver.Navigate().Back();
-                driver.Navigate().Back();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
 
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
             }
             catch (Exception ex)
             {
@@ -183,15 +277,45 @@ namespace HolyQuran.Pages
                 FamousPlacesofMakkahKaaba.Click();
                 Thread.Sleep(3000);
 
-                driver.Navigate().Back();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
 
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
                 FamousPlacesofMakkahMina.Click();
                 Thread.Sleep(3000);
 
-                driver.Navigate().Back();
-                driver.Navigate().Back();
-                //  driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }                //  driver.Navigate().Back();
             }
             catch (Exception ex)
             {
@@ -208,26 +332,81 @@ namespace HolyQuran.Pages
                 FamousPlacesofMedinah_AlNabwi.Click();
                 Thread.Sleep(3000);
 
-                driver.Navigate().Back();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
                 FamousPlacesofMedinah_UhudMountain.Click();
                 Thread.Sleep(3000);
 
-                driver.Navigate().Back();
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
                 Thread.Sleep(1500);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
                 HajhUmrahUQibla.Click();
                 Thread.Sleep(1500);
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
                 Thread.Sleep(1500);
             }
             catch (Exception ex)
             {
                 ReusableMethods.HandleException("Medina Places", ex);
             }
-            driver.Navigate().Back();
+            try
+            {
+                driver.Navigate().Back();
 
+            }
+            catch (Exception ex)
+            {
+                ReusableMethods.HandleException("Backbutton", ex);
+            }
 
         }
 

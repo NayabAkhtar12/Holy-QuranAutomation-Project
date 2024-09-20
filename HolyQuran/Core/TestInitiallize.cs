@@ -1,116 +1,4 @@
-﻿//using AventStack.ExtentReports;
-//using AventStack.ExtentReports.Reporter;
-//using OpenQA.Selenium.Appium;
-//using OpenQA.Selenium.Appium.Android;
-//using OpenQA.Selenium.Appium.Enums;
-
-//namespace HolyQuran.Core
-//{
-//    public class TestInitiallize
-//    {
-//        public AndroidDriver<AndroidElement> driver;
-//        public static ExtentReports Extent;
-//        private static ExtentSparkReporter _reporter;
-
-//        // Static constructor for initializing ExtentReports
-//        static TestInitiallize()
-//        {
-//            string reportPath = @"D:\Reports\report.html";  // Ensure you are using the correct folder path
-//            _reporter = new ExtentSparkReporter(reportPath);
-//            Extent = new ExtentReports();
-//            Extent.AttachReporter(_reporter);
-//        }
-
-//        [TestInitialize]
-//        public void Setup()
-//        {
-//            try
-//            {
-//                AppiumOptions cap = new AppiumOptions();
-//                cap.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-//                cap.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Vivo Y03");
-//                cap.AddAdditionalCapability(MobileCapabilityType.Udid, "ONOZSG4H8HSGW8HY");
-//                cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "14");
-//                cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
-
-//                // This is the key part that will launch the app
-//                cap.AddAdditionalCapability("appPackage", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim");
-//                cap.AddAdditionalCapability("appActivity", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim.ui.activities.MainActivity");
-
-//                driver = new AndroidDriver<AndroidElement>(new Uri("http://192.168.100.14:4723/"), cap, TimeSpan.FromSeconds(180));
-//                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-//            }
-//            catch (Exception e)
-//            {
-//                Console.WriteLine($"Failed to initialize driver: {e.Message}");
-//                throw;
-//            }
-//        }
-
-//        [TestCleanup]
-//        public void CleanUp()
-//        {
-//            try
-//            {
-//                if (driver != null)
-//                {
-//                    driver.CloseApp();
-//                    driver.Quit();
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//                Console.WriteLine($"Failed to close driver: {e.Message}");
-//                throw;
-//            }
-//            // Removed Extent.Flush() from here
-//        }
-
-//        // Method to flush ExtentReports (optional if you want to handle it explicitly in test classes)
-//        public static void FlushExtentReports()
-//        {
-//            Extent?.Flush();
-//        }
-//    }
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+﻿
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium.Appium;
@@ -128,19 +16,19 @@ namespace HolyQuran.Core
         // Static constructor for initializing ExtentReports
         static TestInitiallize()
         {
-            string reportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports", "report.html"); // Use relative path and ensure directory exists
+            string reportPath = @"D:\Reports\report.html";  // Ensure you are using the correct folder path
             _reporter = new ExtentSparkReporter(reportPath);
             Extent = new ExtentReports();
             Extent.AttachReporter(_reporter);
         }
 
-        public TestInitiallize()
-        {
-            string reportPath = @"D:\Reports\report.html";  // Ensure you are using the correct folder path
-            var ExtentSparkReports = new ExtentSparkReporter(reportPath);
-            Extent = new ExtentReports();
-            Extent.AttachReporter(ExtentSparkReports);
-        }
+        //public TestInitiallize()
+        //{
+        //    string reportPath = @"D:\Reports\report.html";  // Ensure you are using the correct folder path
+        //    var ExtentSparkReports = new ExtentSparkReporter(reportPath);
+        //    Extent = new ExtentReports();
+        //    Extent.AttachReporter(ExtentSparkReports);
+        //}
 
         [TestInitialize]
         public void Setup()

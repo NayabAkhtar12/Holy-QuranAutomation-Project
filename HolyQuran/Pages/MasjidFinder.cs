@@ -42,7 +42,15 @@ namespace HolyQuran.Pages
                 {
                     ReusableMethods.HandleException("Ad Issue", ex);
                 }
-                driver.Navigate().Back();
+                try
+                {
+                    driver.Navigate().Back();
+
+                }
+                catch (Exception ex)
+                {
+                    ReusableMethods.HandleException("Backbutton", ex);
+                }
                 Thread.Sleep(3000);
             }
             catch (Exception ex)

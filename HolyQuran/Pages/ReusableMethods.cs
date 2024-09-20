@@ -47,7 +47,7 @@ namespace HolyQuran.Pages
         //}
 
 
-        public void HandleException(string actionName, Exception ex)
+        public void HandleExceptione(string actionName, Exception ex)
         {
             // Log the error message
             Test.Log(Status.Fail, $"Test failed during: {actionName}. Exception: {ex.Message}");
@@ -57,12 +57,36 @@ namespace HolyQuran.Pages
             string filePath = @"D:\Reports\SS\screenshot.png";
             screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
             Console.WriteLine($"Screenshot saved to: {filePath}");
-
-
-            // Optionally, throw the exception to stop the test execution
-            throw ex;
+            Test.AddScreenCaptureFromPath(filePath);
         }
 
+        public void HandleException(string actionName, Exception ex)
+        {
+            // Log the error message
+            Test.Log(Status.Fail, $"Test failed during: {actionName}. Exception: {ex.Message}");
+
+            try
+            {
+                // Capture the screenshot
+                Screenshot screenshot = driver.GetScreenshot();
+                string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+                string filePath = @$"D:\Reports\screenshot_{timestamp}.png";
+
+                // Save screenshot as a PNG file
+                screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
+                Console.WriteLine($"Screenshot saved to: {filePath}");
+
+                // Attach the screenshot to the report
+                Test.AddScreenCaptureFromPath(filePath);
+            }
+            catch (Exception screenshotException)
+            {
+                // Log failure to capture/attach screenshot
+                Test.Log(Status.Warning, "Failed to capture screenshot: " + screenshotException.Message);
+            }
+
+
+        }
 
 
 
@@ -121,8 +145,10 @@ namespace HolyQuran.Pages
                 By handleAdButton = By.XPath(
             "//android.widget.Button | " +
             "//android.widget.ImageView[@content-desc='Ad closed'] | " +
-            "//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ']"
-        );
+            "//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ']" +
+            "//android.view.View[@resource-id=\"mys-content\"]/android.view.View[2]/android.widget.TextView" +
+            "//android.widget.TextView[@text=\"CLOSE\"]"
+            );
 
                 // By closeButton = By.XPath("//android.widget.TextView[@text='Close' or @text='Cerrar' or @text='Fechar' or @text='закрыть' or @text='CLOSE' or @text='ਬੰਦ ਕਰੋ' ]");
                 // By crossButton = By.XPath("//android.widget.Button | //android.widget.ImageView[@content-desc='Ad closed']");
