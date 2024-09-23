@@ -33,12 +33,10 @@ namespace HolyQuran.Test_Class
 
         //    [TestMethod, Description("abc"), Order(2), TestCategory("Order")]
         [TestMethod, TestCategory("Order(1)")]
+        public void TC01()
         //   [TestMethod, Owner(TC.Bobo), TestOrder(5)]
-        public async Task GetUserByIdAsync()
-
-        //   public void TC01()
+        //  public async Task GetUserByIdAsync()
         //   public void TC01_HolyQuran2ndSession()
-
         {
             System.Diagnostics.Trace.WriteLine("Test1");
             ExtentTest test = Extent.CreateTest("TC01_HolyQuran2ndSession Report");
@@ -48,7 +46,7 @@ namespace HolyQuran.Test_Class
         }
 
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(2)")]
         //public void TC02_QiblaFinderTest()
 
         public void TC02()
@@ -58,7 +56,7 @@ namespace HolyQuran.Test_Class
             QFinder.QiblaFinder();
         }
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(3)")]
         //public void TC03_DigitalTasbeehTest()
         public void TC03()
         {
@@ -68,7 +66,7 @@ namespace HolyQuran.Test_Class
         }
 
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(4)")]
         public void TC04_MasjidFinderTest()
         {
             ExtentTest test = Extent.CreateTest("MasjidFinderTest Report");
@@ -77,7 +75,7 @@ namespace HolyQuran.Test_Class
         }
 
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(5)")]
         public void TC05_PrayerTimesTest()
         {
             ExtentTest test = Extent.CreateTest("PrayerTimesTest Report");
@@ -85,7 +83,7 @@ namespace HolyQuran.Test_Class
             PTimes.PrayerTimesMethod();
         }
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(6)")]
         public void TC06_HijriCalenderTest()
         {
             ExtentTest test = Extent.CreateTest("HijriCalenderTest Report");
@@ -95,7 +93,7 @@ namespace HolyQuran.Test_Class
 
 
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(7)")]
         public void TC07_HajjandUmrahSection()
         {
             ExtentTest test = Extent.CreateTest("HajjandUmrahSection Report");
@@ -104,7 +102,7 @@ namespace HolyQuran.Test_Class
             HajjUmrah.UmrahGuide();
         }
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(8)")]
         public void TC08_AzkarSection()
         {
             ExtentTest test = Extent.CreateTest("AzkarSection Report");
@@ -112,7 +110,7 @@ namespace HolyQuran.Test_Class
             Azkar.AzkarMethod();
         }
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(9)")]
         public void TC09_NamesTest()
         {
             ExtentTest test = Extent.CreateTest("99 Names Report");
@@ -120,7 +118,7 @@ namespace HolyQuran.Test_Class
             Names.NamesOfAllah();
         }
 
-        [TestMethod, TestCategory("Order")]
+        [TestMethod, TestCategory("Order(10)")]
         public void TC10_PremiumandMenu()
         {
             ExtentTest test = Extent.CreateTest("PremiumandMenu Report");
