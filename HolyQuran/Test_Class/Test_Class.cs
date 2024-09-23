@@ -31,10 +31,14 @@ namespace HolyQuran.Test_Class
         }
 
 
+        //    [TestMethod, Description("abc"), Order(2), TestCategory("Order")]
+        [TestMethod, TestCategory("Order(1)")]
+        //   [TestMethod, Owner(TC.Bobo), TestOrder(5)]
+        public async Task GetUserByIdAsync()
 
-        // [Test, Order(1)]
-        [TestMethod, TestCategory("Order")]
-        public void TC01_HolyQuran2ndSession()
+        //   public void TC01()
+        //   public void TC01_HolyQuran2ndSession()
+
         {
             System.Diagnostics.Trace.WriteLine("Test1");
             ExtentTest test = Extent.CreateTest("TC01_HolyQuran2ndSession Report");
@@ -45,7 +49,9 @@ namespace HolyQuran.Test_Class
 
 
         [TestMethod, TestCategory("Order")]
-        public void TC02_QiblaFinderTest()
+        //public void TC02_QiblaFinderTest()
+
+        public void TC02()
         {
             ExtentTest test = Extent.CreateTest("QiblaFinderTest Report");
             QFinder = new Qibla_Finder(driver, test);
@@ -53,7 +59,8 @@ namespace HolyQuran.Test_Class
         }
 
         [TestMethod, TestCategory("Order")]
-        public void TC03_DigitalTasbeehTest()
+        //public void TC03_DigitalTasbeehTest()
+        public void TC03()
         {
             ExtentTest test = Extent.CreateTest("DigitalTasbeehTest Report");
             DTasbeeh = new DigitalTasbeeh(driver, test);
