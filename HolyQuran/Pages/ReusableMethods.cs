@@ -139,7 +139,7 @@ namespace HolyQuran.Pages
         //New method for live ads
         public void InterAdHandle()
         {
-            Thread.Sleep(20000);
+            //Thread.Sleep(20000);
             try
             {
                 By handleAdButton = By.XPath(
