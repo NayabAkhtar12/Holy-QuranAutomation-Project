@@ -45,8 +45,10 @@ namespace HolyQuran.Core
                 // This is the key part that will launch the app
                 cap.AddAdditionalCapability("appPackage", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim");
                 cap.AddAdditionalCapability("appActivity", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim.ui.activities.MainActivity");
+                string Appiumuri = "http://localhost:4723/wd/hub";
+                string Appiumuri1 = "http://192.168.100.14:4723/";
 
-                driver = new AndroidDriver<AndroidElement>(new Uri("http://192.168.100.14:4723/"), cap, TimeSpan.FromSeconds(180));
+                driver = new AndroidDriver<AndroidElement>(new Uri(Appiumuri1), cap, TimeSpan.FromSeconds(180));
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             }

@@ -32,7 +32,7 @@ namespace HolyQuran.Pages
                 // Thread.Sleep(3000); // Assuming a delay after click for the view to load
                 try
                 {
-                    ReusableMethods.ScrollToElementByText("Hajj and Umrah Section");
+                    //ReusableMethods.ScrollToElementByText("Hajj and Umrah Section");
                     hajjUmrahMenu.Click();
                     ReusableMethods.InterAdHandle();
 
