@@ -37,9 +37,9 @@ jobs:
 
     - name: Run Appium Server
       run: |
-        chmod +x ./script/RunAppiumServer.sh  # Ensure the script is executable
-        ./script/RunAppiumServer.sh &
-
+        chmod +x ./Scripts/RunAppiumServer.sh  # Ensure the script is executable
+        ./Scripts/RunAppiumServer.sh &
+    # D:\Automation-Projects\Holy-QuranAutomation-Project\Scripts
     - name: Wait for Appium
       run: sleep 15
 
