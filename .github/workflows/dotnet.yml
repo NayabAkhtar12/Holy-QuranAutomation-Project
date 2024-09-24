@@ -23,24 +23,32 @@ jobs:
       with:
         node-version: '16.x'
 
-    # Install and run Appium in the background
+    # Install and run Appium
     - name: Install and Run Appium
       run: |
         npm install -g appium
-        appium --version
-        appium &
+        appium --session-override &
+
+    # Wait for Appium to be ready
+    - name: Wait for Appium
+      run: sleep 15
+
+    # Set Appium URL for testing in CI (if needed)
+    # This step can be omitted if you're sure to use the localhost during testing in CI
+    - name: Set Appium URL
+      run: echo "APPIUM_URL=http://192.168.100.14:4723/" >> $GITHUB_ENV
 
     # Restore dependencies in the HolyQuran directory
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore --verbosity detailed
       working-directory: HolyQuran
 
     # Build the project in the HolyQuran directory
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --verbosity detailed
       working-directory: HolyQuran
 
     # Run tests in the HolyQuran directory
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity detailed
       working-directory: HolyQuran
