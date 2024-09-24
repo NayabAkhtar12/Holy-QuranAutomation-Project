@@ -1,4 +1,4 @@
-name: .NET
+name: .NET + Appium CI
 
 on:
   push:
@@ -17,6 +17,18 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+
+    # Install and run Appium in the background
+    - name: Install and Run Appium
+      run: |
+        npm install -g appium
+        appium --version
+        appium &
 
     # Restore dependencies in the HolyQuran directory
     - name: Restore dependencies
