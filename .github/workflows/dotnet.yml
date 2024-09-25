@@ -35,7 +35,6 @@ jobs:
     - name: Install Appium
       run: npm install -g appium
 
-   
     - name: Install UIAutomator2 Driver
       run: appium driver install uiautomator2
 
@@ -45,25 +44,23 @@ jobs:
         ./Scripts/RunAppiumServer.sh &
 
     # Install Android SDK and Build Tools
-- name: Install Android SDK and Build Tools
-  run: |
-    sudo apt-get update
-    sudo apt-get install -y openjdk-8-jdk wget unzip
-    wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
-    mkdir -p $ANDROID_HOME/cmdline-tools
-    unzip commandlinetools-linux-8512546_latest.zip -d $ANDROID_HOME/cmdline-tools
-    mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
-    yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-    yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-26" "build-tools;33.0.3" "system-images;android-26;google_apis;x86_64"
+    - name: Install Android SDK and Build Tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openjdk-8-jdk wget unzip
+        wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
+        mkdir -p $ANDROID_HOME/cmdline-tools
+        unzip commandlinetools-linux-8512546_latest.zip -d $ANDROID_HOME/cmdline-tools
+        mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-26" "build-tools;33.0.3" "system-images;android-26;google_apis;x86_64"
     
-# Set up Android environment variables
-- name: Set up Android environment variables
-  run: |
-    echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
-    echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
-    echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> $GITHUB_ENV
-
-
+    # Set up Android environment variables
+    - name: Set up Android environment variables
+      run: |
+        echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
+        echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
+        echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> $GITHUB_ENV
 
     # Restore dependencies in the HolyQuran directory
     - name: Restore dependencies
