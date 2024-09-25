@@ -8,10 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted  # Use self-hosted runner where the device is connected
+    runs-on: windows-latest
     strategy:
       matrix:
-        api-level: [28]  # Modify as needed for different API levels
+        api-level: [26, 27, 28]  # Modify as needed for different API levels
         target: [default]
 
     steps:
