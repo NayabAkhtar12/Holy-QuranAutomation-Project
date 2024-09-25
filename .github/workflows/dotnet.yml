@@ -15,70 +15,71 @@ jobs:
         target: [default]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
 
-    - name: Install Appium
-      run: npm install -g appium
+      - name: Install Appium
+        run: npm install -g appium
 
-    - name: Install UIAutomator2 Driver
-      run: appium driver install uiautomator2
+      - name: Install UIAutomator2 Driver
+        run: appium driver install uiautomator2
 
-    - name: Run Appium Server
-      run: |
-        chmod +x ./Scripts/RunAppiumServer.sh  # Ensure the script is executable
-        ./Scripts/RunAppiumServer.sh &
+      - name: Run Appium Server
+        run: |
+          chmod +x ./Scripts/RunAppiumServer.sh  # Ensure the script is executable
+          ./Scripts/RunAppiumServer.sh &  # Run in background
+          sleep 10  # Wait for the server to start
 
-    # Install Android SDK and Build Tools
-    - name: Install Android SDK and Build Tools
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y openjdk-8-jdk wget unzip
-        wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
-        mkdir -p $ANDROID_HOME/cmdline-tools
-        unzip commandlinetools-linux-8512546_latest.zip -d $ANDROID_HOME/cmdline-tools
-        mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-26" "build-tools;33.0.3" "system-images;android-26;google_apis;x86_64"
-    
-    # Set up Android environment variables
-    - name: Set up Android environment variables
-      run: |
-        echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
-        echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
-        echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> $GITHUB_ENV
-
-    - name: Install ADB
+      - name: Install ADB
         run: sudo apt-get install adb
 
       - name: Verify ADB connection
         run: adb devices
 
-    # Restore dependencies in the HolyQuran directory
-    - name: Restore dependencies
-      run: dotnet restore --verbosity detailed
-      working-directory: HolyQuran
+      # Install Android SDK and Build Tools
+      - name: Install Android SDK and Build Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-8-jdk wget unzip
+          wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
+          mkdir -p $ANDROID_HOME/cmdline-tools
+          unzip commandlinetools-linux-8512546_latest.zip -d $ANDROID_HOME/cmdline-tools
+          mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-26" "build-tools;33.0.3" "system-images;android-26;google_apis;x86_64"
 
-    # Build the project in the HolyQuran directory
-    - name: Build
-      run: dotnet build --no-restore --verbosity detailed
-      working-directory: HolyQuran
+      # Set up Android environment variables
+      - name: Set up Android environment variables
+        run: |
+          echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
+          echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
+          echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> $GITHUB_ENV
 
-    # Run tests in the HolyQuran directory
-    - name: Test
-      run: dotnet test --no-build --verbosity detailed
-      working-directory: HolyQuran
+      # Restore dependencies in the HolyQuran directory
+      - name: Restore dependencies
+        run: dotnet restore --verbosity detailed
+        working-directory: HolyQuran
+
+      # Build the project in the HolyQuran directory
+      - name: Build
+        run: dotnet build --no-restore --verbosity detailed
+        working-directory: HolyQuran
+
+      # Run tests in the HolyQuran directory
+      - name: Test
+        run: dotnet test --no-build --verbosity detailed
+        working-directory: HolyQuran
