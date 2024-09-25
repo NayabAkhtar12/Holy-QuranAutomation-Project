@@ -35,13 +35,19 @@ jobs:
     - name: Install Appium
       run: npm install -g appium
 
+    - name: Install UIAutomator2 Driver
+      run: appium driver install uiautomator2
+
+    - name: List Installed Appium Drivers
+      run: appium driver list --installed
+
     - name: Run Appium Server
       run: |
         chmod +x ./Scripts/RunAppiumServer.sh  # Ensure the script is executable
         ./Scripts/RunAppiumServer.sh &
-    # D:\Automation-Projects\Holy-QuranAutomation-Project\Scripts
+        
     - name: Wait for Appium
-      run: sleep 15
+      run: sleep 30  # Increased wait time for Appium server
 
     # Restore dependencies in the HolyQuran directory
     - name: Restore dependencies
