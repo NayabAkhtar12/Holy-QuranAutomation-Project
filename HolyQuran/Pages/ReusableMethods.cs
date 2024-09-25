@@ -1,11 +1,4 @@
-﻿using AventStack.ExtentReports;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.MultiTouch;
-using OpenQA.Selenium.Support.UI;
-
-namespace HolyQuran.Pages
+﻿namespace HolyQuran.Pages
 {
     class ReusableMethods
     {
