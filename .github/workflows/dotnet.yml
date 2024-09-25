@@ -8,10 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest  # Use Ubuntu as the GitHub-hosted runner
     strategy:
       matrix:
-        api-level: [26, 27, 28]  # Modify as needed for different API levels
+        api-level: [26]  # Modify as needed for different API levels
         target: [default]
 
     steps:
@@ -35,8 +35,44 @@ jobs:
     - name: Install Appium
       run: npm install -g appium
 
-    # Verify that the real device is connected
-    - name: Verify Connected Devices
+    # Install Android SDK and build-tools
+    - name: Install Android SDK and Build Tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y android-sdk
+        sdkmanager "platform-tools" "build-tools;33.0.3" "platforms;android-26"
+
+    # Set up environment variables for Android SDK
+    - name: Set up Android Environment Variables
+      run: |
+        echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
+        echo "PATH=$ANDROID_HOME/platform-tools:$PATH" >> $GITHUB_ENV
+
+    # Install the system image required for the emulator (API 26 in this case)
+    - name: Install Android System Image
+      run: |
+        sdkmanager "system-images;android-26;google_apis;x86_64"
+    
+    # Create an Android emulator (AVD)
+    - name: Create Android Emulator
+      run: |
+        echo "no" | avdmanager create avd -n testAVD -k "system-images;android-26;google_apis;x86_64" --force
+
+    # Start the Android emulator (headless mode for CI)
+    - name: Start Android Emulator
+      run: |
+        emulator -avd testAVD -no-window -no-audio -no-boot-anim &
+      timeout-minutes: 3
+
+    # Wait for the emulator to start fully
+    - name: Wait for Emulator to Boot
+      run: |
+        adb wait-for-device
+        adb shell input keyevent 82
+      timeout-minutes: 3
+
+    # Verify that the emulator is running
+    - name: Verify Emulator is Running
       run: adb devices
 
     - name: Install UIAutomator2 Driver
