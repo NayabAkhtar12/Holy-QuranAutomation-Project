@@ -62,6 +62,12 @@ jobs:
         echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
         echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> $GITHUB_ENV
 
+    - name: Install ADB
+        run: sudo apt-get install adb
+
+      - name: Verify ADB connection
+        run: adb devices
+
     # Restore dependencies in the HolyQuran directory
     - name: Restore dependencies
       run: dotnet restore --verbosity detailed
