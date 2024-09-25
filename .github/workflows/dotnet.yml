@@ -8,10 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted  # Use self-hosted runner where the device is connected
     strategy:
       matrix:
-        api-level: [26]  # Modify as needed for different API levels
+        api-level: [28]  # Modify as needed for different API levels
         target: [default]
 
     steps:
@@ -35,17 +35,18 @@ jobs:
     - name: Install Appium
       run: npm install -g appium
 
+    # Verify that the real device is connected
+    - name: Verify Connected Devices
+      run: adb devices
+
     - name: Install UIAutomator2 Driver
       run: appium driver install uiautomator2
-
-    - name: List Installed Appium Drivers
-      run: appium driver list --installed
 
     - name: Run Appium Server
       run: |
         chmod +x ./Scripts/RunAppiumServer.sh  # Ensure the script is executable
         ./Scripts/RunAppiumServer.sh &
-        
+
     - name: Wait for Appium
       run: sleep 30  # Increased wait time for Appium server
 
