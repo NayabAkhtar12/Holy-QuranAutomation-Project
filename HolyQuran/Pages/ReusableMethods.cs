@@ -1,4 +1,11 @@
-﻿namespace HolyQuran.Pages
+﻿using AventStack.ExtentReports;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Support.UI;
+
+namespace HolyQuran.Pages
 {
     class ReusableMethods
     {
@@ -201,7 +208,18 @@
             // For example: AttachScreenshot();
         }
 
-
+        public IWebElement? FindElement(By by, string elementName)
+        {
+            try
+            {
+                return driver.FindElement(by); // Attempts to find the element
+            }
+            catch (Exception ex)
+            {
+                HandleException(elementName + " not found", ex); // Logs exception
+                return null; // Returns null if the element is not found
+            }
+        }
         IWebElement Continue => driver.FindElementById("com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim:id/StartButton");
     }
 }
