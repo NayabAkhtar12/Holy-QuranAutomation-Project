@@ -42,9 +42,7 @@ namespace HolyQuran.Core
                 cap.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "14");
                 cap.AddAdditionalCapability("appium:automationName", AutomationName.AndroidUIAutomator2);
 
-                // This is the key part that will launch the app
-                cap.AddAdditionalCapability("appPackage", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim");
-                cap.AddAdditionalCapability("appActivity", "com.holyquran.alquran.majeed.qibla.prayertimes.tasbeeh.hisnulmuslim.ui.activities.MainActivity");
+           
                 string Appiumuri = "http://127.0.0.1:4723/";
                 string Appiumuri1 = "http://192.168.100.14:4723/";
 
